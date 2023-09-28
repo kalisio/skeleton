@@ -1,19 +1,25 @@
-<img src="https://s3.eu-central-1.amazonaws.com/kalisioscope/teams/teams-logo-color-512x256.png">
+[![Kalisio](https://s3.eu-central-1.amazonaws.com/kalisioscope/kapp/kapp-logo-black-512x168.png)](https://kalisio.com)
 
-[![Latest Release](https://img.shields.io/github/v/tag/kalisio/teams?sort=semver&label=latest)](https://github.com/kalisio/teams/releases)
-[![Build Status](https://app.travis-ci.com/kalisio/teams.svg?branch=master)](https://app.travis-ci.com/kalisio/teams)
-[![Code Climate](https://codeclimate.com/github/kalisio/teams/badges/gpa.svg)](https://codeclimate.com/github/kalisio/teams)
-[![Test Coverage](https://codeclimate.com/github/kalisio/teams/badges/coverage.svg)](https://codeclimate.com/github/kalisio/teams/coverage)
-[![Documentation](https://img.shields.io/badge/documentation-available-brightgreen.svg)](https://kalisio.github.io/teams/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/kalisio/teams.svg)](https://hub.docker.com/r/kalisio/teams/)
+[![Latest Release](https://img.shields.io/github/v/tag/kalisio/skeleton?sort=semver&label=latest)](https://github.com/kalisio/skeleton/releases)
+[![Build Status](https://app.travis-ci.com/kalisio/skeleton.svg?branch=master)](https://app.travis-ci.com/kalisio/skeleton)
+[![Code Climate](https://codeclimate.com/github/kalisio/skeleton/badges/gpa.svg)](https://codeclimate.com/github/kalisio/skeleton)
+[![Test Coverage](https://codeclimate.com/github/kalisio/skeleton/badges/coverage.svg)](https://codeclimate.com/github/kalisio/skeleton/coverage)
+[![Documentation](https://img.shields.io/badge/documentation-available-brightgreen.svg)](https://kalisio.github.io/skeleton/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/kalisio/skeleton.svg)](https://hub.docker.com/r/kalisio/skeleton/)
 
-> Kalisio Teams aims to manage organizations that use the Kalision app ecosystem.
+## kApp - KDK application template
 
 For more information please visit our websites:
 * [Kalisio Company](https://kalisio.com/)
-* [Kalisio teams](https://kalisio.github.io/teams/)
+* [kApp - KDK demonstration application](https://kapp.dev.kalisio.xyz/)
 
 This application is based on the [Kalisio Development Kit](https://kalisio.github.io/kdk/).
+
+## Documentation
+
+The full documentation is available [here](https://kalisio.github.io/skeleton/)
+
+> The documentation website is generated using [VitePress](https://vitepress.dev/)
 
 ## Authors
 
