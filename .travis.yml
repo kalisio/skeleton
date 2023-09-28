@@ -1,0 +1,24 @@
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: GeoJMK1oRDbgALbx74j6Y0WpbySyrVgD0EX3uXsAVbuuWG/CusOmq+g1JhYmpW3Hp5qY/4Wh4OvzZvGdT7hS+SnjKvrdlW0DCKRt6wfOHDcPS20XODteaMvi8jA9NxBRbiyjpGqSFskg6aZbTPNyFM0xGqeQ/Fje0vQ063knl0OfSU8uP8x0lFrwqvQEqCe3X2z69YTc8e0O8HJoYQXazOn43pVtdTuUKH38dLtydbXq4SrQeagS1yGtnSYJvwNlbDvm2L3YrzOs/gE/1Dlyri/6dIElhP8ZMYY7mUWSJwSYVlrDjOcMxFYtSkzEpcnYybPM5g0AlrAZHGHhMOR6ViWaq1uaqyjN1pOceqOww1hIUtVXhgzPp1Pl2NO4npkJfU0lzCHJeJ+FY0eZazGzfa9aCfZ2p0iYIhVu+WnP7BKO81YpebUyxOWSf3wbjuUBPvWTDyzN/tmPbzK+Vew+Z9X8UZlMkUZt+p23yiLde9MPhoVSu1aFJTCmKARVu9ElZeBM2V4rrQ0ipVJBAXc4KTuIayFOfRbO1pDOS0uETKTg/GGHV1l8Ux0sY9ndSyfQa83kAMbPUMA/wpR0TMzYEr+xp02mDmjWa7XSLKxn1taoDxJ5W2+yal67CeN3bKyQHO5ea+yZFnhdX+sU9VVY76YKTqt2qbXHzDscPa6B81k=
+    on_success: always
+    on_failure: always
+stages:
+- name: APP
+  if: commit_message !~ /(skip[ _-]app)/
+jobs:
+  include:
+  - stage: APP
+    os: linux
+    language: node_js
+    node_js:
+    - '16'
+    services:
+    - docker
+    install: skip
+    before_script:
+    - export -f travis_fold
+    script:
+    - bash .travis.app.sh
