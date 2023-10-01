@@ -8,6 +8,9 @@ notifications:
 stages:
 - name: APP
   if: commit_message !~ /(skip[ _-]app)/
+- name: DOC
+  if: commit_message =~ /\[build doc\]/ 
+
 jobs:
   include:
   - stage: APP
@@ -21,4 +24,18 @@ jobs:
     before_script:
     - export -f travis_fold
     script:
-    - bash .travis.app.sh
+    - bash .travis.app.sh  
+  - stage: DOC
+    language: node_js
+    node_js:
+    - '16'
+    install: true
+    script: bash .travis.doc.sh
+    deploy:
+      provider: pages
+      local-dir: docs/.vitepress/dist
+      skip-cleanup: true
+      github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+      keep-history: true
+      on:
+        branch: master   
