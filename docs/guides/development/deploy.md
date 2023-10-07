@@ -6,13 +6,14 @@ The main purpose of the continuous integration and deployment (CI/CD) pipeline i
 
 You can read this [article](https://medium.com/better-programming/why-we-stopped-using-so-called-best-practices-in-our-ci-cd-process-2ff09811f633) on Medium to get an overview of our global CI/CD pipeline, which is illustrated in the following schema:
 
-![Global deployment pipeline](./../../.vitepress/public/images/cd-pipeline-global.svg)
+![Global deployment pipeline](./../../.vitepress/public/images/cd-pipeline.svg)
 
 The different operations performed by each stages are the following:
 * **APP**: executes the *travis.app.sh* script to
   * creates the Docker images for the application and testing
   * run backend and frontend tests on the target infrastructure
   * deploy the web application on the target infrastructure
+* **DOC**: executes the *travis.doc.sh* script to deploy documentation on github pages
 
 ::: tip
 You can skip any of this stage by adding `[skip stage]` to your commit message, e.g. `[skip app]` to skip the App build
