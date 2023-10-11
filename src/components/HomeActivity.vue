@@ -1,9 +1,7 @@
 <template>
   <KPage padding>
      <!-- Use default content slot -->
-     <p>toto</p>
   </KPage>
-  <p>toto</p>
 </template>
 
 <script>
