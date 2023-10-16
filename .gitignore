@@ -80,7 +80,8 @@ public/icons/kdk
 public/kalisio.png
 src/tours/core
 src/tours/map
-src/css/kdk
+src/css/kdk/*
+!src/css/kdk/.gitkeep
 
 # vitepress
 docs/.vitepress/cache
