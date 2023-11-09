@@ -1,4 +1,4 @@
-# Skeleton - KDK application template
+[![KDK](https://s3.eu-central-1.amazonaws.com/kalisioscope/skeleton/skeleton-logo-color-512x192.png)](https://kalisio.github.io/kdk/)
 
 [![Latest Release](https://img.shields.io/github/v/tag/kalisio/skeleton?sort=semver&label=latest)](https://github.com/kalisio/skeleton/releases)
 [![Build Status](https://app.travis-ci.com/kalisio/skeleton.svg?branch=master)](https://app.travis-ci.com/kalisio/skeleton)
