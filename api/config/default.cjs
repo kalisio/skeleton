@@ -10,11 +10,11 @@ const API_PREFIX = '/api'
 let domain
 // If we build a specific staging instance
 if (process.env.NODE_APP_INSTANCE === 'dev') {
-  domain = 'https://teams.dev.kalisio.xyz'
+  domain = 'https://skeleton.dev.kalisio.xyz'
 } else if (process.env.NODE_APP_INSTANCE === 'test') {
-  domain = 'https://teams.test.kalisio.xyz'
+  domain = 'https://skeleton.test.kalisio.xyz'
 } else if (process.env.NODE_APP_INSTANCE === 'prod') {
-  domain = 'https://teams.planet.kalisio.xyz'
+  domain = 'https://skeleton.planet.kalisio.xyz'
 } else {
   // Otherwise we are on a developer machine
   if (process.env.NODE_ENV === 'development') {
@@ -25,7 +25,7 @@ if (process.env.NODE_APP_INSTANCE === 'dev') {
 }
 // Override defaults if env provided
 if (process.env.SUBDOMAIN) {
-  domain = 'https://teams.' + process.env.SUBDOMAIN
+  domain = 'https://skeleton.' + process.env.SUBDOMAIN
 }
 
 module.exports = {
@@ -116,13 +116,13 @@ module.exports = {
     DailyRotateFile: {
       format: winston.format.json(),
       dirname: path.join(__dirname, '..', 'logs'),
-      filename: 'teams-%DATE%.log',
+      filename: 'skeleton-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
       maxFiles: '30d'
     }
   },
   db: {
     adapter: 'mongodb',
-    url: process.env.DB_URL || (containerized ? 'mongodb://mongodb:27017/teams' : 'mongodb://127.0.0.1:27017/teams')
+    url: process.env.DB_URL || (containerized ? 'mongodb://mongodb:27017/skeleton' : 'mongodb://127.0.0.1:27017/skeleton')
   }
 }

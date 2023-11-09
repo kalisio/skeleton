@@ -23,6 +23,8 @@ export default {
         if (typeof hook.service.getPath !== 'function') return false
         // Then user creation
         if ((hook.service.name === 'users') && (hook.method === 'create')) return false
+        // The email verification
+        if ((hook.service.name === 'account') && (hook.method === 'verifyEmail')) return false
         // If not exception perform authentication
         return true
       }, authenticate('jwt')),
