@@ -54,8 +54,8 @@ module.exports = configure(function (ctx) {
     // https://quasar.dev/quasar-cli-webpack/quasar-config-js#property-htmlvariables
     htmlVariables: {
       appName: clientConfig.appName,
-      appSlug: 'teams',
-      appDescription: 'Kalisio Teams Application'
+      appSlug: 'skeleton',
+      appDescription: 'Kalisio Skeleton Application'
     },
 
     vendor: {
@@ -250,7 +250,7 @@ module.exports = configure(function (ctx) {
       manifest: {
         name: clientConfig.pwaAppName,
         short_name: clientConfig.pwaShortName,
-        description: `Kalisio Teams Application`,
+        description: `Kalisio Skeleton Application`,
         display: 'standalone',
         start_url: './',
         id: './',
@@ -259,27 +259,22 @@ module.exports = configure(function (ctx) {
         orientation: 'portrait',
         icons: [
           {
-            src: 'icons/teams-icon-32x32.png',
-            sizes: '32x32',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/teams-icon-64x64.png',
+            src: 'icons/skeleton-icon-64x64.png',
             sizes: '64x64',
             type: 'image/png'
           },
           {
-            src: 'icons/teams-icon-128x128.png',
+            src: 'icons/skeleton-icon-128x128.png',
             sizes: '128x128',
             type: 'image/png'
           },
           {
-            src: 'icons/teams-icon-256x256.png',
+            src: 'icons/skeleton-icon-256x256.png',
             sizes: '256x256',
             type: 'image/png'
           },
           {
-            src: 'icons/teams-icon-512x512.png',
+            src: 'icons/skeleton-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }
