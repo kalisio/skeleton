@@ -58,9 +58,9 @@ echo "Build flavor is $FLAVOR on branch $TRAVIS_BRANCH"
 cd ..
 
 # Clone the workspace where to build the app
-echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
-git clone https://github.com/kalisio/development development
-export WORKSPACE_DIR=`pwd`/developmenet/workspaces/apps
+#echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+git clone https://oauth2:$GITHUB_TOKEN@github.com/kalisio/development.git
+export WORKSPACE_DIR=`pwd`/development/workspaces/apps
 
 # Configue the required env
 source $WORKSPACE_DIR/apps.sh skeleton
