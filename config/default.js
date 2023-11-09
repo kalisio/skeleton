@@ -6,20 +6,20 @@ const clientPort = process.env.CLIENT_PORT || 8080
 const API_PREFIX = '/api'
 
 let domain
-let appName = 'Kalisio Teams'
+let appName = 'Kalisio Skeleton'
 let pwaAppName = appName
 let pwaShortName = appName
 // If we build a specific staging instance
 if (process.env.NODE_APP_INSTANCE === 'dev') {
-  domain = 'https://teams.dev.kalisio.xyz'
+  domain = 'https://skeleton.dev.kalisio.xyz'
   pwaAppName += ' (dev)'
   pwaShortName += ' (dev)'
 } else if (process.env.NODE_APP_INSTANCE === 'test') {
-  domain = 'https://teams.test.kalisio.xyz'
+  domain = 'https://skeleton.test.kalisio.xyz'
   pwaAppName += ' (test)'
   pwaShortName += ' (test)'
 } else if (process.env.NODE_APP_INSTANCE === 'prod') {
-  domain = 'https://teams.planet.kalisio.com'
+  domain = 'https://skeleton.planet.kalisio.com'
 } else {
   // Otherwise we are on a developer machine
   if (process.env.NODE_ENV === 'development') {
@@ -49,13 +49,13 @@ module.exports = {
   appName,
   pwaAppName,
   pwaShortName,
-  appLogo: 'teams-logo.png',  
+  appLogo: 'skeleton-logo.png',  
   flavor: process.env.NODE_APP_INSTANCE || 'dev',
   version: require('../package.json').version,
   buildNumber: process.env.BUILD_NUMBER,
   apiPath: API_PREFIX,
-  terms: 'teams-terms',
-  apiJwt: 'teams-jwt',
+  terms: 'skeleton-terms',
+  apiJwt: 'skeleton-jwt',
   apiTimeout: 20000,
   transport: 'websocket', // Could be 'http' or 'websocket',
   appChangelog: 'https://kalisio.github.io/kApp/about/changelog.html',
