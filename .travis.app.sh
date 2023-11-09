@@ -74,11 +74,11 @@ git clone https://github.com/kalisio/kli.git kalisio && cd kalisio && yarn
 
 # In dev flavor we can build different versions on different branches
 # so check if a specific file exists for the target branch first otherwise use default one
-if [[ -f $WORKSPACE_DIR/$FLAVOR/$KDK_PROJECT_FILE-$TRAVIS_BRANCH.js ]];
+if [[ -f $WORKSPACE_DIR/$APP/$FLAVOR/$KDK_PROJECT_FILE-$TRAVIS_BRANCH.js ]];
 then
-  cp $WORKSPACE_DIR/$FLAVOR/$KDK_PROJECT_FILE-$TRAVIS_BRANCH.js $APP.js
+  cp $WORKSPACE_DIR/$APP/$FLAVOR/$KDK_PROJECT_FILE-$TRAVIS_BRANCH.js $APP.js
 else
-  cp $WORKSPACE_DIR/$FLAVOR/$KDK_PROJECT_FILE.js $APP.js
+  cp $WORKSPACE_DIR/$APP/$FLAVOR/$KDK_PROJECT_FILE.js $APP.js
 fi
 
 # Clone the project and install the dependencies
