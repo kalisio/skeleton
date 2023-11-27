@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#
-# Provision the required files
-#
-travis_fold start "provision"
-
 check_code()
 {
    if [[ $1 -ne $2 ]]; then
@@ -19,6 +14,11 @@ parse_semver()
   [[ "$1" =~ $REGEXP ]]
   SEMVER=(${BASH_REMATCH[1]} ${BASH_REMATCH[2]} ${BASH_REMATCH[3]})
 }
+
+#
+# Provision the required files
+#
+travis_fold start "provision"
 
 # Define the application name
 APP=$(node -p -e "require('./package.json').name")
@@ -63,7 +63,7 @@ git clone https://oauth2:$GITHUB_TOKEN@github.com/kalisio/development.git
 export WORKSPACE_DIR=`pwd`/development/workspaces/apps
 
 # Configue the required env
-source $WORKSPACE_DIR/apps.sh skeleton
+source $WORKSPACE_DIR/apps.sh $APP
 
 # setup the BUILD_NUMBER
 export BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
