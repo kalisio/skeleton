@@ -89,14 +89,14 @@ export function createServer () {
   )
 
   process.on('SIGINT', async () => {
-    server.app.logger.info('Recieved SIGINT signal running teardown')
+    server.app.logger.info('Received SIGINT signal running teardown')
     await server.app.teardown()
     process.exit(0)
   })
 
   process.on('SIGTERM', async () => {
-    server.app.logger.info('Recieved SIGTERM signal running teardown')
-    await server.teardown()
+    server.app.logger.info('Received SIGTERM signal running teardown')
+    await server.app.teardown()
     process.exit(0)
   })
 
