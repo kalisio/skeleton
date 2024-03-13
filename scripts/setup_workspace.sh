@@ -40,10 +40,6 @@ begin_group "Setting up workspace ..."
 if [ "$CI" = true ]; then
     WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 
-    # workaround since repo is skeleton with a 'A' and in kli file it's skeleton with a 'a'
-    mv "$WORKSPACE_DIR/skeleton" "$WORKSPACE_DIR/skeleton"
-    ln -s "$WORKSPACE_DIR/skeleton" "$WORKSPACE_DIR/skeleton"
-
     DEVELOPMENT_REPO_URL="https://$GITHUB_DEVELOPMENT_PAT@github.com/kalisio/development.git"
 else
     shift $((OPTIND-1))
