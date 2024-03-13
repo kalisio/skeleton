@@ -40,22 +40,22 @@ begin_group "Setting up workspace ..."
 if [ "$CI" = true ]; then
     WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 
-    # workaround since repo is kApp with a 'A' and in kli file it's kapp with a 'a'
-    mv "$WORKSPACE_DIR/kApp" "$WORKSPACE_DIR/kapp"
-    ln -s "$WORKSPACE_DIR/kapp" "$WORKSPACE_DIR/kApp"
+    # workaround since repo is skeleton with a 'A' and in kli file it's skeleton with a 'a'
+    mv "$WORKSPACE_DIR/skeleton" "$WORKSPACE_DIR/skeleton"
+    ln -s "$WORKSPACE_DIR/skeleton" "$WORKSPACE_DIR/skeleton"
 
     DEVELOPMENT_REPO_URL="https://$GITHUB_DEVELOPMENT_PAT@github.com/kalisio/development.git"
 else
     shift $((OPTIND-1))
     WORKSPACE_DIR="$1"
 
-    # NOTE: cloning kapp could be avoided if we could parse app_version from tag/branch name instead
-    # In this case, the kli would clone kapp
+    # NOTE: cloning skeleton could be avoided if we could parse app_version from tag/branch name instead
+    # In this case, the kli would clone skeleton
     GIT_OPS=
     if [ -n "$WORKSPACE_TAG" ] || [ -n "$WORKSPACE_BRANCH" ]; then
         GIT_OPS="--branch ${WORKSPACE_TAG:-$WORKSPACE_BRANCH}"
     fi
-    git clone --depth 1 $GIT_OPS "$GITHUB_URL/kalisio/kApp.git" "$WORKSPACE_DIR/kapp"
+    git clone --depth 1 $GIT_OPS "$GITHUB_URL/kalisio/skeleton.git" "$WORKSPACE_DIR/skeleton"
 
     DEVELOPMENT_REPO_URL="$GITHUB_URL/kalisio/development.git"
 
@@ -69,7 +69,7 @@ git clone --depth 1 "$DEVELOPMENT_REPO_URL" "$DEVELOPMENT_DIR"
 
 if [ "$WORKSPACE_KIND" = kli ] || [ "$WORKSPACE_KIND" = klifull ]; then
     # select kli file for dependencies
-    init_app_infos "$WORKSPACE_DIR/kapp" "$DEVELOPMENT_DIR/workspaces/apps"
+    init_app_infos "$WORKSPACE_DIR/skeleton" "$DEVELOPMENT_DIR/workspaces/apps"
     KLI_FILE=$(get_app_kli_file)
 
     echo "About to populate workspace using $KLI_FILE ..."

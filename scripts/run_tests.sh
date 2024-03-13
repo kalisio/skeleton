@@ -47,7 +47,7 @@ FLAVOR=$(get_app_flavor)
 
 echo "About to run tests for ${APP} v${VERSION}-($FLAVOR) ..."
 
-. "$WORKSPACE_DIR/development/workspaces/apps/apps.sh" kapp
+. "$WORKSPACE_DIR/development/workspaces/apps/apps.sh" skeleton
 load_env_files "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
 
 ## Start mongo
