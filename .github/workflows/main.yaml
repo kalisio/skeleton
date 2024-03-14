@@ -7,6 +7,7 @@ on:
 jobs:
   run_tests:
     name: Run tests
+    if: ${{ !contains(github.event.head_commit.message, 'skip tests') }}
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repo
@@ -54,7 +55,6 @@ jobs:
 
   build_app:
     name: Build app
-    if: ${{ !contains(github.event.head_commit.message, 'skip app') }}
     needs: [ run_tests ]
     runs-on: ubuntu-22.04
     steps:
@@ -76,7 +76,6 @@ jobs:
   build_docs:
     name: Build docs
     if: ${{ contains(github.event.head_commit.message, 'build doc') }}
-    needs: [ run_tests ]
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repo
