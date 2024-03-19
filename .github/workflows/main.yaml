@@ -55,7 +55,6 @@ jobs:
 
   build_app:
     name: Build app
-    needs: [ run_tests ]
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repo
