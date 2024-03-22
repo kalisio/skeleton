@@ -58,7 +58,7 @@ module.exports = {
   apiJwt: 'skeleton-jwt',
   apiTimeout: 20000,
   transport: 'websocket', // Could be 'http' or 'websocket',
-  appChangelog: 'https://kalisio.github.io/kApp/about/changelog.html',
+  appChangelog: 'https://kalisio.github.io/skeleton/about/changelog.html',
   publisher: 'Kalisio',
   publisherWebsite: website,
   locale: {
