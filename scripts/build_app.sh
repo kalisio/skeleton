@@ -5,6 +5,7 @@ set -euo pipefail
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "$THIS_FILE")
 ROOT_DIR=$(dirname "$THIS_DIR")
+WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 
 . "$THIS_DIR/kash/kash.sh"
 
@@ -20,6 +21,7 @@ while getopts "pr:" option; do
             ;;
         r) # report outcome to slack
             CI_STEP_NAME=$OPTARG
+            load_env_files "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
             trap 'slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$?" "$SLACK_WEBHOOK_APPS"' EXIT
             ;;
         *)
@@ -30,16 +32,15 @@ done
 ## Init workspace
 ##
 
-WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 init_app_infos "$ROOT_DIR" "$WORKSPACE_DIR/development/workspaces/apps"
 
 APP=$(get_app_name)
 VERSION=$(get_app_version)
 FLAVOR=$(get_app_flavor)
 
-echo "About to build ${APP} v${VERSION}-$FLAVOR ..."
+echo "About to build $APP v$VERSION-$FLAVOR ..."
 
-load_env_files "$WORKSPACE_DIR/development/common/kalisio_dockerhub.enc.env" "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
+load_env_files "$WORKSPACE_DIR/development/common/kalisio_dockerhub.enc.env"
 load_value_files "$WORKSPACE_DIR/development/common/KALISIO_DOCKERHUB_PASSWORD.enc.value"
 
 ## Build container
@@ -51,17 +52,17 @@ cp "$KLI_FILE" "$WORKSPACE_DIR/kli.js"
 
 echo "Will use kli file $KLI_FILE to install and link modules ..."
 
-IMAGE_NAME="kalisio/$APP"
+IMAGE_NAME="$KALISIO_DOCKERHUB_URL/kalisio/$APP"
 IMAGE_TAG="$VERSION-$FLAVOR"
 
-begin_group "Building container ..."
+begin_group "Building container $IMAGE_NAME:$IMAGE_TAG ..."
 
-docker login --username "$KALISIO_DOCKERHUB_USERNAME" --password-stdin < "$KALISIO_DOCKERHUB_PASSWORD"
+docker login --username "$KALISIO_DOCKERHUB_USERNAME" --password-stdin "$KALISIO_DOCKERHUB_URL" < "$KALISIO_DOCKERHUB_PASSWORD"
 # DOCKER_BUILDKIT is here to be able to use Dockerfile specific dockerginore (app.Dockerfile.dockerignore)
 DOCKER_BUILDKIT=1 docker build \
     --build-arg APP="$APP" \
     --build-arg FLAVOR="$FLAVOR" \
-    --build-arg BUILD_NUMBER=1 \
+    --build-arg BUILD_NUMBER="$(get_git_commit_short_sha "$ROOT_DIR")" \
     -f app.Dockerfile \
     -t "$IMAGE_NAME:$IMAGE_TAG" \
     "$WORKSPACE_DIR"
@@ -72,6 +73,6 @@ if [ "$PUBLISH" = true ]; then
     docker push "$IMAGE_NAME:$FLAVOR"
 fi
 
-docker logout
+docker logout "$KALISIO_DOCKERHUB_URL"
 
-end_group "Building container ..."
+end_group "Building container $IMAGE_NAME:$IMAGE_TAG ..."

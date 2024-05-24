@@ -5,6 +5,7 @@ set -euo pipefail
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "$THIS_FILE")
 ROOT_DIR=$(dirname "$THIS_DIR")
+WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 
 . "$THIS_DIR/kash/kash.sh"
 
@@ -28,6 +29,7 @@ while getopts "m:n:cr:" option; do
             ;;
         r) # report outcome to slack
             CI_STEP_NAME=$OPTARG
+            load_env_files "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
             trap 'slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$?" "$SLACK_WEBHOOK_APPS"' EXIT
             ;;
         *)
@@ -38,37 +40,9 @@ done
 ## Init workspace
 ##
 
-WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
-init_app_infos "$ROOT_DIR" "$WORKSPACE_DIR/development/workspaces/apps"
-
-APP=$(get_app_name)
-VERSION=$(get_app_version)
-FLAVOR=$(get_app_flavor)
-
-echo "About to run tests for ${APP} v${VERSION}-($FLAVOR) ..."
-
 . "$WORKSPACE_DIR/development/workspaces/apps/apps.sh" skeleton
-load_env_files "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
-
-## Start mongo
-##
-
-begin_group "Starting mongo $MONGO_VER ..."
-
-use_mongo "$MONGO_VER"
-k-mongo
-
-end_group "Starting mongo $MONGO_VER ..."
 
 ## Run tests
 ##
 
-use_node "$NODE_VER"
-yarn test:server
-
-## Publish code coverage
-##
-
-if [ "$CODE_COVERAGE" = true ]; then
-    send_coverage_to_cc "$CC_TEST_REPORTER_ID"
-fi
+run_app_tests "$ROOT_DIR" "workspaces/apps" "$CODE_COVERAGE" "$NODE_VER" "$MONGO_VER"
