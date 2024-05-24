@@ -49,6 +49,12 @@ function getGuidesSidebar () {
     { text: 'Introduction', link: '/guides/introduction' },
     { text: 'Folder Structure', link: '/guides/structure' },
     { text: 'Installation', link: '/guides/installing' },
+    { text: 'Customizing', 
+      collapsed: true,
+      items: [
+        { text: 'Guards', link: '/guides/customizing/guards' }
+      ]
+    },
     {
       text: 'Development',
       collapsed: true,
