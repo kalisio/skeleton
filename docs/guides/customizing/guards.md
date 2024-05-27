@@ -1,6 +1,6 @@
 # Guards
 
-[Guards are functions](https://github.com/kalisio/kdk/blob/master/core/client/guards.js) used to control access to routes in an application. They allow you to define navigation rules based on the user's status (authenticated or not), permissions, and route definitions.
+[Guards](https://github.com/kalisio/kdk/blob/master/core/client/guards.js) control access to routes within an application. They allow you to define navigation rules based on the user's status (authenticated or not), permissions, and route definitions.
 
 ## Registering and Unregistering Guards
 
