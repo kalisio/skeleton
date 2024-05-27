@@ -25,7 +25,7 @@ module.exports = [{
           tour: {
             home: tours.home,
             'side-nav': tours['side-nav']
-          },
+          }
         },
         home: {
           name: 'home-activity',
