@@ -1,14 +1,13 @@
 <template>
-  <KPage padding>
-     <!-- Use default content slot -->
-  </KPage>
+  <KActivity
+    name="home"
+  >
+    <div class="fixed-center">
+      <KStamp text="Home activity" textSize="36px" />
+    </div>
+  </KActivity>
 </template>
 
-<script>
-import { mixins } from '@kalisio/kdk/core.client'
-
-export default {
-  name: 'home-activity',
-  mixins: [mixins.baseActivity()]
-}
+<script setup>
+// Nothing to do
 </script>
