@@ -13,11 +13,11 @@ describe(suite, () => {
 
   before(async () => {
     runner = new core.Runner(suite, {
-      appName: 'teams',
+      appName: 'skeleton',
       browser: {
-        args: ['--lang=fr'],
         slowMo: 1
-      }
+      },
+      lang: 'fr-FR'
     })
     page = await runner.start()
   })
