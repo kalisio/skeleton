@@ -29,15 +29,6 @@ if (process.env.NODE_APP_INSTANCE === 'dev') {
   }
 }
 
-const leftPane = {
-  content: [
-    { id: 'home', icon: 'las la-home', label: 'HomeActivity.LABEL', renderer: 'item', route: { name: 'home-activity' } },
-    { id: 'logout', icon: 'las la-sign-out-alt', label: 'LOGOUT', renderer: 'item', route: { name: 'logout' } }
-  ],
-  opener: true,
-  visible: false
-}
-
 module.exports = {
   // Special alias to host loopback interface in cordova
   // domain: 'http://10.0.2.2:8081',
@@ -73,10 +64,6 @@ module.exports = {
     useProxy: true
   },
   screens: {
-    // header: 'screen/KScreenHeader',
-    // footer: 'screen/KScreenFooter',
-    // backgroundColor: '#FFF8ED',
-    // textColor: 'white',
     actions: [{ 
       id: 'terms-policies', 
       label: 'screen.TERMS_AND_POLICIES', 
@@ -92,7 +79,15 @@ module.exports = {
     }
   },
   homeActivity: {
-    leftPane: leftPane
+    panes: {
+      left: {
+        content: [
+          { id: 'home', icon: 'las la-home', label: 'HomeActivity.LABEL', renderer: 'item', route: { name: 'home-activity' } },
+          { id: 'logout', icon: 'las la-sign-out-alt', label: 'LOGOUT', renderer: 'item', route: { name: 'logout' } }
+        ],
+        opener: true
+      }
+    } 
   },
   routes: require('../src/router/routes')
 }
