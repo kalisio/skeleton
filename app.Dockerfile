@@ -1,11 +1,18 @@
 ARG DEBIAN_VERSION=bookworm
 ARG NODE_VERSION=20
 
+
 ## Use a builder
 ##
 
 FROM node:${NODE_VERSION}-${DEBIAN_VERSION}-slim as builder
 LABEL maintainer="contact@kalisio.xyz"
+
+# git is required to pull some node packages from github
+RUN DEBIAN_FRONTEND=noninteractive && \
+  apt-get update && \
+  apt-get --no-install-recommends --yes install \
+    ca-certificates git
 
 COPY . /opt/kalisio
 
