@@ -71,6 +71,11 @@ jobs:
     name: Build docs
     if: ${{ startsWith(github.event.head_commit.message, 'docs:') || contains(github.event.head_commit.message, 'build doc') }}
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [ 20 ]
+        debian: [ 'bookworm' ]    
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4

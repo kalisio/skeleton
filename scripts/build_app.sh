@@ -12,6 +12,10 @@ WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 ## Parse options
 ##
 
+DEFAULT_NODE_VER=20
+DEFAULT_DEBIAN_VER=bookworm
+NODE_VER=$DEFAULT_NODE_VER
+DEBIAN_VER=$DEFAULT_DEBIAN_VER
 PUBLISH=false
 CI_STEP_NAME="Build app"
 while getopts "pr:" option; do
@@ -63,6 +67,8 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg APP="$APP" \
     --build-arg FLAVOR="$FLAVOR" \
     --build-arg BUILD_NUMBER="$(get_git_commit_short_sha "$ROOT_DIR")" \
+    --build-arg NODE_VERSION="$NODE_VER" \
+    --build-arg DEBIAN_VERSION="$DEBIAN_VER" \
     -f app.Dockerfile \
     -t "$IMAGE_NAME:$IMAGE_TAG" \
     "$WORKSPACE_DIR"
