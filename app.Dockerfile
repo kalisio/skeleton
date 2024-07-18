@@ -1,7 +1,10 @@
+ARG DEBIAN_VERSION=bookworm
+ARG NODE_VERSION=20
+
 ## Use a builder
 ##
 
-FROM node:16-bookworm-slim as Builder
+FROM node:${NODE_VERSION}-${DEBIAN_VERSION}-slim as builder
 LABEL maintainer="contact@kalisio.xyz"
 
 COPY . /opt/kalisio
@@ -29,7 +32,7 @@ RUN \
 ## Copy to final container
 ##
 
-FROM node:16-bookworm-slim
+FROM node:${NODE_VERSION}-${DEBIAN_VERSION}-slim
 LABEL maintainer="contact@kalisio.xyz"
 
 ARG APP
