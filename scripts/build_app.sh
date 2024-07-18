@@ -57,7 +57,7 @@ cp "$KLI_FILE" "$WORKSPACE_DIR/kli.js"
 echo "Will use kli file $KLI_FILE to install and link modules ..."
 
 IMAGE_NAME="$KALISIO_DOCKERHUB_URL/kalisio/$APP"
-IMAGE_TAG="$VERSION-$FLAVOR"
+IMAGE_TAG="$VERSION-$FLAVOR-node$NODE_VER-$DEBIAN_VER"
 
 begin_group "Building container $IMAGE_NAME:$IMAGE_TAG ..."
 
@@ -76,7 +76,12 @@ docker tag "$IMAGE_NAME:$IMAGE_TAG" "$IMAGE_NAME:$FLAVOR"
 
 if [ "$PUBLISH" = true ]; then
     docker push "$IMAGE_NAME:$IMAGE_TAG"
-    docker push "$IMAGE_NAME:$FLAVOR"
+    if [ "$NODE_VER" = "$DEFAULT_NODE_VER" ] && [ "$DEBIAN_VER" = "$DEFAULT_DEBIAN_VER" ]; then
+        docker tag "$IMAGE_NAME:$IMAGE_TAG" "$IMAGE_NAME:$VERSION-$FLAVOR"
+        docker push "$IMAGE_NAME:$VERSION-$FLAVOR"
+        docker tag "$IMAGE_NAME:$IMAGE_TAG" "$IMAGE_NAME:$FLAVOR"
+        docker push "$IMAGE_NAME:$FLAVOR"
+    fi
 fi
 
 docker logout "$KALISIO_DOCKERHUB_URL"
