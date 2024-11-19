@@ -1,7 +1,7 @@
 <template>
   <KActivity name="home">
     <div class="fixed-center">
-      <KStamp text="Home activity" textSize="36px" />
+      <KStamp icon="las la-home" iconSize="10rem" />
     </div>
   </KActivity>
 </template>
