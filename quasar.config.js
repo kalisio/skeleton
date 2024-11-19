@@ -22,6 +22,17 @@ const clientConfig = require('config')
 // Write JSON config
 fs.writeFileSync(path.join('config', 'client-config.json'), JSON.stringify(clientConfig))
 
+// Set pwa name
+let pwaName = clientConfig.appName
+// If we build a specific staging instance
+if (!process.env.NODE_APP_INSTANCE) {
+  pwaName += ' (local)'
+} else if (process.env.NODE_APP_INSTANCE === 'dev') {
+  pwaName += ' (dev)'
+} else if (process.env.NODE_APP_INSTANCE === 'test') {
+  pwaName += ' (test)'
+}
+
 module.exports = configure(function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
@@ -233,33 +244,31 @@ module.exports = configure(function (ctx) {
       },
       
       manifest: {
-        name: clientConfig.pwaAppName,
-        short_name: clientConfig.pwaShortName,
+        name: pwaName,
+        short_name: pwaName,
         description: `Kalisio Skeleton Application`,
         display: 'standalone',
-        start_url: './',
-        id: './',
-        background_color: '#f0ecec',
-        theme_color :  '#bf360c',
+        start_url: 'https://skeleton.dev.kalisio.xyz',
+        id: 'skeleton',
         orientation: 'portrait',
         icons: [
           {
-            src: 'icons/skeleton-icon-64x64.png',
+            src: 'icons/skeleton-icon-color-64x64.png',
             sizes: '64x64',
             type: 'image/png'
           },
           {
-            src: 'icons/skeleton-icon-128x128.png',
+            src: 'icons/skeleton-icon-color-128x128.png',
             sizes: '128x128',
             type: 'image/png'
           },
           {
-            src: 'icons/skeleton-icon-256x256.png',
+            src: 'icons/skeleton-icon-color-256x256.png',
             sizes: '256x256',
             type: 'image/png'
           },
           {
-            src: 'icons/skeleton-icon-512x512.png',
+            src: 'icons/skeleton-icon-color-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }

@@ -5,7 +5,7 @@ import config from 'config'
 import { Notify } from 'quasar'
 import appHooks from '../main.hooks'
 import services from '../services'
-import { utils, initializeApi, i18n, utils as kdkCoreUtils, Store, Events, beforeGuard, authenticationGuard } from '@kalisio/kdk/core.client'
+import { initializeApi, i18n, utils as kdkCoreUtils, Store, Events, beforeGuard, authenticationGuard } from '@kalisio/kdk/core.client'
 
 export default async ({ app }) => {
   // Initiate the client
@@ -32,8 +32,10 @@ export default async ({ app }) => {
   }
 
   // Register global components
+  app.component('KAction', await kdkCoreUtils.loadComponent('action/KAction'))
   app.component('KStamp', await kdkCoreUtils.loadComponent('KStamp'))
   app.component('KActivity', await kdkCoreUtils.loadComponent('KActivity'))
+  app.component('KDialog', await kdkCoreUtils.loadComponent('KDialog'))
 
   // Register global properties
   // FIXME: This is used for testing purpose, don't know how to access this from Puppeteer otherwise
