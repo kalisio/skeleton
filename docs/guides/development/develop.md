@@ -64,7 +64,7 @@ Look at this [tutorial](https://washamdev.com/debug-a-website-in-ios-safari-on-w
 
 Notably useful to debug your app running on a mobile device.
 
-For this you need to [enable remote debug on your Android device](https://developer.chrome.com/docs/devtools/remote-debugging/).
+For this you first need to install ADB package with `sudo apt install -y adb` then [enable remote debug on your Android device](https://developer.chrome.com/docs/devtools/remote-debugging/). Some tips can be found on this [thread](https://stackoverflow.com/questions/21925992/chrome-devtools-devices-does-not-detect-device-when-plugged-in) if you get into trouble.
 
 ::: warning
 For PWA you will need to setup port forwarding so that you can use the same `http:\\localhost:port` adress on your device as on your PC, otherwise you will not be able to install the application.
