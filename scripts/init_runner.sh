@@ -20,7 +20,7 @@ init_github_build_app() {
 }
 
 init_github_build_docs() {
-    install_reqs age sops nvm node20
+    install_reqs age sops nvm node18
 }
 
 init_github_additional_tests() {
