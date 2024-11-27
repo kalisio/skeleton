@@ -7,7 +7,7 @@
     "CONTACT": "Contact",
     "TERMS_AND_POLICIES": "Conditions générales"
   },
-  "HomeActivity": {
-    "LABEL": "Home"
+  "Activity": {
+    "LABEL": "Activité"
   }
 }

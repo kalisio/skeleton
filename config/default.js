@@ -40,7 +40,7 @@ module.exports = {
     panes: {
       left: {
         content: [
-          { id: 'home', icon: 'las la-home', label: 'HomeActivity.LABEL', renderer: 'item', route: { name: 'home-activity' } },
+          { id: 'activity', icon: 'las la-smile', label: 'Activity.LABEL', renderer: 'item', route: { name: 'activity' } },
           { id: 'logout', icon: 'las la-sign-out-alt', label: 'LOGOUT', renderer: 'item', route: { name: 'logout' } }
         ],
         opener: true
