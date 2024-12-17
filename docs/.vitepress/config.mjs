@@ -49,12 +49,6 @@ function getGuidesSidebar () {
     { text: 'Introduction', link: '/guides/introduction' },
     { text: 'Folder Structure', link: '/guides/structure' },
     { text: 'Installation', link: '/guides/installing' },
-    { text: 'Customizing', 
-      collapsed: true,
-      items: [
-        { text: 'Guards', link: '/guides/customizing/guards' }
-      ]
-    },
     {
       text: 'Development',
       collapsed: true,
@@ -64,7 +58,25 @@ function getGuidesSidebar () {
         { text: 'Testing your app', link: '/guides/development/test' },
         { text: 'Configure your app', link: '/guides/development/configure' },
         { text: 'Deploy your app', link: '/guides/development/deploy' },
-        { text: 'Publish your app', link: '/guides/development/publish' }
+        { text: 'Publish your app', link: '/guides/development/publish' },
+        { text: 'Document your app', link: '/guides/development/documentation' },
+        { text: 'Use our cli', link: '/guides/development/kli' },
+        { text: 'Tips & troubleshooting', link: '/guides/development/tips' }
+      ]
+    },
+    {
+      text: 'Howtos',
+      collapsed: true,
+      items: [
+        { text: 'Create a service', link: '/guides/howtos/service' },
+        { text: 'Distribute a service', link: '/guides/howtos/distribution' },
+        { text: 'Manage permissions', link: '/guides/howtos/permissions' },
+        { text: 'Add guards', link: '/guides/howtos/guards' },
+        { text: 'Manage collection', link: '/guides/howtos/collection' },
+        { text: 'Add tours', link: '/guides/howtos/tours' },
+        { text: 'Build a PWA', link: '/guides/howtos/pwa' },
+        { text: 'Connect to Keycloak', link: '/guides/howtos/keycloak' },
+        { text: 'Connect to a planet', link: '/guides/howtos/planet' }
       ]
     }
   ]
