@@ -69,7 +69,7 @@ Have a look at our workflow for an example.
 ## Working with diagrams
 
 We use two distinct tools to work with diagrams:
-* [draw.io](http://draw.io)] a complete editor to create well known diagrams
+* [draw.io](http://draw.io) a complete editor to create well known diagrams
 * [mermaid](https://github.com/knsv/mermaid) which allows you to generate diagrams from a simple text definition. We mainly use mermaid to create the hooks diagrams.
 
 To be able to include the diagrams within the documentation, we adopted the following methodology:
@@ -83,9 +83,13 @@ To be able to include the diagrams within the documentation, we adopted the foll
 ### mermaid
 
 1. install the [mermaid CLI](https://github.com/mermaidjs/mermaid.cli)
-2. start from the [hooks diagram template file](./hooks-diagram-template.mmd)
+2. start from the hooks diagram template file
+::: details .github/workflows/main.yaml
+
+<<< @/.vitepress/public/hooks-diagram-template.mmd
+:::
 3. output the SVG/PNG file in the root **assets** folder using `mmdc -i ./my-hooks-diagram.mmd -t neutral -b transparent -o my-hooks-diagram.svg`
 4. reference it in the documentation using a link like this `![My legend](https://raw.githubusercontent.com/kalisio/kdk/master/images/my-diagram.png)`
 
 The template looks like this:
-![Hooks Diagram Template](../.vitepress/public/images/hooks-diagram-template.png)
+![Hooks Diagram Template](../../.vitepress/public/images/hooks-diagram-template.png)
