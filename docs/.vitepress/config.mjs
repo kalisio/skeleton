@@ -61,7 +61,8 @@ function getGuidesSidebar () {
         { text: 'Publish your app', link: '/guides/development/publish' },
         { text: 'Document your app', link: '/guides/development/documentation' },
         { text: 'Use our CLI', link: '/guides/development/kli' },
-        { text: 'Tips & troubleshooting', link: '/guides/development/tips' }
+        { text: 'Tips', link: '/guides/development/tips' },
+        { text: 'Troubleshooting', link: '/guides/development/troubleshooting' }
       ]
     },
     {
