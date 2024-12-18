@@ -1,6 +1,6 @@
 # Create a new service
 
-Start creating a folder with service name in `/src/services` and create your service inside.
+Start creating a folder with service name in `api/src/services` and create your service inside.
 
 >
 > By convention the name of the files will be formated like `serviceName.service.js`.
@@ -22,18 +22,20 @@ The final structure will look like this:
   ...    
 ```
 
+## Define the service
+
 ::: tip
 If you service is a pure database service exposing no additional feature you don't actually need a service file.
 :::
-
-## Define the service
 
 The content of the service file can either export a service object or a function generating one (possibly async):
 ```js
 export default async function (name, app, options) {
   return {
-    async createMessage (message) {
+    async publishMessage (message) {
+      ...
       await this.create(message)
+      this.emit('message-published', message)
     },
     
     async otherMethod () {
@@ -49,7 +51,7 @@ Define the target collection name and any additional information (e.g. indices) 
 ```js
 export default function (app, options) {
   const db = options.db || app.db
-  options.Model = db.collection('message')
+  options.Model = db.collection('messages')
   options.Model.createIndex({ createdAt: -1 })
   options.Model.createIndex({ description: 1 }, { name: 'description-en', collation: { locale: 'en', strength: 1 } })
   options.Model.createIndex({ description: 1 }, { name: 'description-fr', collation: { locale: 'fr', strength: 1 } })
@@ -102,15 +104,15 @@ export default async function () {
   
   try {
     // Set up services  
-    const messageService = await app.createService('message', {
+    const messageService = await app.createService('messages', {
       modelsPath,
       servicesPath,
-      methods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'createMessage'],
-      events: ['event-closed', 'event-reopened']
+      methods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'publishMessage'],
+      events: ['message-published']
     })
 
-    messageService.on('createMessage', async event => {
-      await eventsService.createMessage(event)
+    messageService.on('message-published', async event => {
+      ...
     })
 
     await app.configure(kdkCore)
@@ -121,3 +123,18 @@ export default async function () {
 }
 
 ```
+
+## Frontend service
+
+By default client-side services related to backend services don't have to be explicitely created as Feathers will automatically generate a wrapper on the first call of [`api.getService()`](https://kalisio.github.io/kdk/api/core/application.html#getservice-name-context).
+
+However, Feathers requires to [explicitely register custom methods/events](https://feathersjs.com/api/client/rest.html#custom-methods) so that in this case you will need to use [`createService()`](https://kalisio.github.io/kdk/api/core/application.html#createservice-name-options) upfront:
+```js
+api.createService('messages', {
+  methods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'publishMessage'],
+  events: ['message-published']
+})
+
+await api.getService('messages').publishMessage({ ... })
+```
+

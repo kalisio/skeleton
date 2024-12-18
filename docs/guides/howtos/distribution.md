@@ -39,6 +39,8 @@ server.on('close', () => finalize(app))
 
 ## Consume the distributed service
 
+### Backend
+
 Any application that needs to consume your distributed service should also be setup by configuring the distribution in the server configuration file (usually `api/config/default.js`):
 ```js
 {
@@ -51,7 +53,7 @@ Any application that needs to consume your distributed service should also be se
 	  // Avoid conflict with internal jobs service
 	  middlewares: { after: express.errorHandler() },
 	  distributedMethods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'publish-article'],
-    distributedEvents: ['created', 'updated', 'patched', 'removed', 'article-published']
+      distributedEvents: ['created', 'updated', 'patched', 'removed', 'article-published']
   }
 }
 ```
@@ -70,3 +72,7 @@ Then you should be able to access the remote service either on the backend or th
 ```js
 const articlesService = app.getService('articles')
 ```
+
+### Frontend
+
+On the client-side distributed services should be used like [any service directly hosted by your application](./service.md).
