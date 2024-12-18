@@ -3,9 +3,9 @@
 In this section we assume the you already have a configured and running [Keycloak](https://www.keycloak.org) instance with a realm to host your users.
 Additionally, you have to create an OpenID Connect client in your Keycloak instance in order to connect through your application, here is the usual configuration for it assuming your application will locally run on port `8080` and be deployed on `https://your.domain.com`:
 * Client authentication set to ON (i.e. no public access),
-* Authentication flow: standard flow,
-* Redirect URIs: `https://your.domain.com/oauth/keycloak/callback` and `http://localhost:8080/oauth/keycloak/callback`
-* Web origins: `https://your.domain.com` and `http://localhost:8080`
+* Authentication flow set to "Standard flow",
+* Redirect URIs: `https://your.domain.com/oauth/keycloak/callback` and `http://localhost:8080/oauth/keycloak/callback`,
+* Web origins: `https://your.domain.com` and `http://localhost:8080`.
 
 The following sections will explain how to make your KDK-based application connect using Keycloak instead of the default local authentication system based on the following environment variables:
 * `KEYCLOAK_URL`: your Keycloak domain,
@@ -45,7 +45,7 @@ module.exports = {
 
 ::: tip
 Configuring another authentication provider like Google or GitHub is pretty similar, simply change the configuration key from `keycloak` to e.g. `google` and adapt the options if required. The callback URL will then become `https://your.domain.com/oauth/google/callback`.
-For configuration options details you should have a look to the [Grant docuemntation](https://github.com/simov/grant) used under-the-hood by Feathers for OAuth.
+For configuration options details you should have a look to the [Grant documentation](https://github.com/simov/grant) used under-the-hood by Feathers for OAuth.
 :::
 
 ## Configure the client
