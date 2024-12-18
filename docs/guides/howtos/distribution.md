@@ -6,10 +6,10 @@ Using the [feathers-distributed](https://github.com/kalisio/feathers-distributed
 
 In the configuration file of your server (usually `api/config/default.js`) add the following configuration for the distribution:
 ```js
-{
+module.exports = {
 	...
 	distribution: {
-		// Return true whenever you'd like to distribute the service
+	  // Return true whenever you'd like to distribute the service
     services: (service) => service.path.includes('articles'),
     // Distribute at least modelName for KFS to know about features services
     middlewares: { after: express.errorHandler() },
@@ -43,17 +43,17 @@ server.on('close', () => finalize(app))
 
 Any application that needs to consume your distributed service should also be setup by configuring the distribution in the server configuration file (usually `api/config/default.js`):
 ```js
-{
+module.exports = {
 	...
 	distribution: {
-		// We don't distribute any service here
+	  // We don't distribute any service here
 	  services: (service) => false,
 	  // We only consume services from my app
 	  remoteServices: (service) => (service.key === 'my-app'),
 	  // Avoid conflict with internal jobs service
 	  middlewares: { after: express.errorHandler() },
 	  distributedMethods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'publish-article'],
-      distributedEvents: ['created', 'updated', 'patched', 'removed', 'article-published']
+    distributedEvents: ['created', 'updated', 'patched', 'removed', 'article-published']
   }
 }
 ```
