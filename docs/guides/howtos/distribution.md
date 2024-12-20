@@ -6,6 +6,8 @@ Using the [feathers-distributed](https://github.com/kalisio/feathers-distributed
 
 In the configuration file of your server (usually `api/config/default.js`) add the following configuration for the distribution:
 ```js
+const express = require('@feathersjs/express')
+
 module.exports = {
 	...
 	distribution: {
