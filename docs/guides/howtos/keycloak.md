@@ -3,7 +3,7 @@
 In this section we assume the you already have a configured and running [Keycloak](https://www.keycloak.org) instance with a realm to host your users.
 Additionally, you have to create an OpenID Connect client in your Keycloak instance in order to connect through your application, here is the usual configuration for it assuming your application will locally run on port `8080` and be deployed on `https://your.domain.com`:
 * Client authentication set to ON (i.e. no public access),
-* Authentication flow set to "Standard flow",
+* Authentication flow set to "*Standard flow*" and "*Direct access grants*",
 * Redirect URIs: `https://your.domain.com/oauth/keycloak/callback` and `http://localhost:8080/oauth/keycloak/callback`,
 * Web origins: `https://your.domain.com` and `http://localhost:8080`.
 
@@ -134,4 +134,33 @@ import KScreen from './KScreen.vue'
 // Data
 const actions = ref(_.get(config, 'screens.login.actions', []))
 </script>
+```
+
+## Manage permissions
+
+If you only use Keycloak to authenticate you might then need to also manage [permissions](./permissions.md) based on Keycloak [Role Based Access Control](https://en.wikipedia.org/wiki/Role-based_access_control) (RBAC). For this you can the following procedure:
+
+1) Create your roles in Keycloak, either realm roles or client roles.
+
+2) Create a mapper that will expose this information as an attribute in the user information. Predefined mappers already exist in Keycloak for roles, simply activate "*Add to userinfo*" option and select your token claim name like `roles`.
+
+3) Add appropriate hooks to extract this information from the user profile coming from keycloak, either when the user is created or update, typically in `api/src/services/users/hooks.js`. You might create your own hook or rely on the `serialize()` hook that extract a source property and move it to a target property, possibly filtering invalid items using a [sift filter](https://github.com/crcn/sift.js).
+
+```js
+import commonHooks from 'feathers-hooks-common'
+import { hooks as kdkCoreHooks } from '@kalisio/kdk/core.api.js'
+import * as permissions from '../../../../common/permissions.mjs'
+
+// Used to retrieve keycloak roles and convert into permissions system
+const serializeRoles = kdkCoreHooks.serialize([{ source: 'keycloak.roles', target: 'permissions', filter: { $in: permissions.RoleNames } }])
+
+export default {
+  before: {
+    create: [..., serializeRoles],
+    update: [..., serializeRoles],
+    patch: [..., serializeRoles]
+  },
+  ...
+}
+
 ```
