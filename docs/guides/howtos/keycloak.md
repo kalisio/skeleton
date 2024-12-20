@@ -164,3 +164,8 @@ export default {
 }
 
 ```
+
+## Manage custom attributes
+
+Similarly to roles, you can retrieve custom user attributes from Keycloak by adding a *by configuration mapper* of type *User Attribute*, which maps a custom user attribute to a token claim, in your client scopes.
+
