@@ -14,6 +14,7 @@ Here are some howtos to help you start developing your application with the KDK:
 * How to [distribute a service](./howtos/distribution.md) of your application to remote applications,
 * How to [manage permissions](./howtos/permissions.md) to control service access in your application,
 * How to [add guards](./howtos/guards.md) to control route access in your single-page application,
+* How to [create an activity](./howtos/activity.md) to have the entry point for user interactions,
 * How to [manage a collection](./howtos/collection.md) to display and interact with items managed by your services,
 * How to [add tours](./howtos/tours.md) to guide your users through your application,
 * How to [run](./howtos/guards.md) your application as a [Progressive Web App](https://web.dev/explore/progressive-web-apps),
