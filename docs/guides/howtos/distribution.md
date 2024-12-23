@@ -60,7 +60,7 @@ module.exports = {
 }
 ```
 
-Similarly activate it in the main entry point (usually `api/main.js` or `server.js`):
+Similarly activate it in the main entry point (usually `api/src/main.js` or `api/src/server.js`):
 ```js
 import distribution, { finalize } from '@kalisio/feathers-distributed'
 
@@ -70,7 +70,28 @@ app.configure(distribution(app.get('distribution')))
 server.on('close', () => finalize(app))
 ```
 
-Then you should be able to access the remote service either on the backend or the frontend side:
+Finally, decorate the distributed service with KDK-specific add-ons so that it wil appear to your application if it has been created by it using [`createService()`](./service.md), this is typically useful to also use [permisisons](./permissions.md) on it (usually `api/src/services.js`):
+```js
+import { permissions, decorateDistributedService } from '@kalisio/kdk/core.api.js'
+
+app.on('service', service => {
+  // Make remote services compliant with our internal app services so that e.g. permissions can be used
+  if (service.key === 'my-app') {
+    decorateDistributedService.call(app, service)
+    // Register default permissions for it
+    debug('Registering permissions for remote service ', service.name)
+    permissions.defineAbilities.registerHook((subject, can, cannot) => {
+      can('service', service.name)
+      can('read', service.name)
+    })
+    // We then need to update abilities cache
+    const authorisationService = app.getService('authorisations')
+    if (authorisationService) authorisationService.clearAbilities()
+  }
+})
+```
+
+Now, you should be able to access the remote service either on the backend or the frontend side:
 ```js
 const articlesService = app.getService('articles')
 ```
