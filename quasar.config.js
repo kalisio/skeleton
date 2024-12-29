@@ -64,7 +64,7 @@ module.exports = configure(function (ctx) {
     // https://quasar.dev/quasar-cli-webpack/quasar-config-js#property-htmlvariables
     htmlVariables: {
       appName: clientConfig.appName,
-      appSlug: 'skeleton',
+      appSlug: clientConfig.appSlug,
       appDescription: 'Kalisio Skeleton Application'
     },
 

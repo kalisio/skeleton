@@ -1,12 +1,16 @@
+// Helper declaration
+const APP_SLUG='skeleton'
+const API_PATH='/api'
+
 module.exports = {
   appName: 'Kalisio Skeleton',
+  appSlug: APP_SLUG,
   buildMode: process.env.BUILD_MODE === 'pwa' ? 'pwa' : 'spa',
-  appLogo: 'skeleton-logo.png',  
   flavor: process.env.NODE_APP_INSTANCE || 'dev',
   version: require('../package.json').version,
   buildNumber: process.env.BUILD_NUMBER,
-  apiPath: '/api',
-  apiJwt: 'skeleton-jwt',
+  apiPath: API_PATH,
+  apiJwt: `${APP_SLUG}-jwt`,
   apiTimeout: 20000,
   transport: 'websocket', // Could be 'http' or 'websocket',
   appChangelog: 'https://kalisio.github.io/skeleton/about/changelog.html',
