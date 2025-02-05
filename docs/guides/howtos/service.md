@@ -128,7 +128,7 @@ export default async function () {
 
 By default client-side services related to backend services don't have to be explicitely created as Feathers will automatically generate a wrapper on the first call of [`api.getService()`](https://kalisio.github.io/kdk/api/core/application.html#getservice-name-context).
 
-However, Feathers requires to [explicitely register custom methods/events](https://feathersjs.com/api/client/rest.html#custom-methods) so that in this case you will need to use [`createService()`](https://kalisio.github.io/kdk/api/core/application.html#createservice-name-options) upfront:
+However, Feathers requires to [explicitely register custom methods/events](https://feathersjs.com/api/client/rest.html#custom-methods), and the **KDK** recommand to use [`createService()`](https://kalisio.github.io/kdk/api/core/application.html#createservice-name-options) upfront notably to manage [context](https://kalisio.github.io/kdk/api/introduction.html#context) if required:
 ```js
 api.createService('messages', {
   methods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'publishMessage'],
