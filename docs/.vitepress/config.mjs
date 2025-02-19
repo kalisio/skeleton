@@ -27,11 +27,11 @@ export default defineConfig({
   },
   vite: {
     optimizeDeps: {
-			include: ['keycloak-js', 'lodash'],
-		},
-		ssr: {
-			noExternal: ['vitepress-theme-kalisio']
-		}
+      include: ['keycloak-js', 'lodash'],
+    },
+    ssr: {
+      noExternal: ['vitepress-theme-kalisio']
+    }
   }
 })
 
@@ -53,6 +53,7 @@ function getGuidesSidebar () {
       text: 'Development',
       collapsed: true,
       items: [
+        { text: 'Initialize your repository', link: '/guides/development/initialize' },
         { text: 'Setup your environment', link: '/guides/development/setup' },
         { text: 'Develop your app', link: '/guides/development/develop' },
         { text: 'Testing your app', link: '/guides/development/test' },
