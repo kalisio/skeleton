@@ -57,6 +57,8 @@ The `setup_workspace.sh` script purpose is to create a proper **workspace** for 
 ```
 The `build_app.sh` script runs in the CI **workspace**, build the container image and push it to the target repository. It takes multiple arguments to remain versatile (`-p` to do the push, `-n` to specify the node version we use, ...)
 
+![Build app steps](./../../.vitepress/public/images/build-app-steps.svg)
+
 ## Updating the CI scripts for your needs
 
 The CI scripts are fairly generic, and if you create a new app based on `skeleton`, here are the key points to get the scripts working for your app:
