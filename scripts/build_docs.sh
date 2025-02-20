@@ -2,6 +2,9 @@
 set -euo pipefail
 # set -x
 
+# This script is used to build the docs and push them on github pages.
+# It must be run in a proper 'CI workspace' to find everything it expects (cf setup_workspace.sh script).
+
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "$THIS_FILE")
 ROOT_DIR=$(dirname "$THIS_DIR")
@@ -32,4 +35,6 @@ done
 ## Build docs
 ##
 
+# TODO: you'll need to adjust the repository name where the gh-pages branch
+# will be pushed
 build_docs "$ROOT_DIR" "kalisio/skeleton" "$PUBLISH"

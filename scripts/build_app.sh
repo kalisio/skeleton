@@ -2,6 +2,11 @@
 set -euo pipefail
 # set -x
 
+# This script is used to build the app container and to eventually push the produced image on a remote
+# container repository.
+# It must be run in a proper 'CI workspace' to find everything it expects (cf setup_workspace.sh script).
+# By default it only build the image container, it won't push it, you need '-p' for that
+
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "$THIS_FILE")
 ROOT_DIR=$(dirname "$THIS_DIR")
@@ -26,7 +31,7 @@ while getopts "d:n:pr:" option; do
         n) # defines node version
             NODE_VER=$OPTARG
              ;;
-        p) # defines mongo version
+        p) # define to push the image container to the remote container repository
             PUBLISH=true
             ;;
         r) # report outcome to slack
@@ -42,6 +47,8 @@ done
 ## Init workspace
 ##
 
+# This uses the 'name' field in the app package.json, which must be in lowercase.
+# TODO: you may need to adjust the second parameter to point it to the $KLI_BASE
 init_app_infos "$ROOT_DIR" "$WORKSPACE_DIR/development/workspaces/apps"
 
 APP=$(get_app_name)
@@ -50,6 +57,8 @@ FLAVOR=$(get_app_flavor)
 
 echo "About to build $APP v$VERSION-$FLAVOR ..."
 
+# This loads credentials for the target container repository
+# TODO: you may adjust these files to use the ones in your associated 'development' repository
 load_env_files "$WORKSPACE_DIR/development/common/kalisio_dockerhub.enc.env"
 load_value_files "$WORKSPACE_DIR/development/common/KALISIO_DOCKERHUB_PASSWORD.enc.value"
 
@@ -62,13 +71,16 @@ cp "$KLI_FILE" "$WORKSPACE_DIR/kli.js"
 
 echo "Will use kli file $KLI_FILE to install and link modules ..."
 
+# TODO: you may change the path for the container image, here it'll be pushed in a 'kalisio' group
 IMAGE_NAME="$KALISIO_DOCKERHUB_URL/kalisio/$APP"
 IMAGE_TAG="$VERSION-$FLAVOR-node$NODE_VER-$DEBIAN_VER"
 
 begin_group "Building container $IMAGE_NAME:$IMAGE_TAG ..."
 
+# TODO: the environment variables to use here may not be the same
 docker login --username "$KALISIO_DOCKERHUB_USERNAME" --password-stdin "$KALISIO_DOCKERHUB_URL" < "$KALISIO_DOCKERHUB_PASSWORD"
 # DOCKER_BUILDKIT is here to be able to use Dockerfile specific dockerginore (app.Dockerfile.dockerignore)
+# TODO: you may need more build-arg to 'docker build'
 DOCKER_BUILDKIT=1 docker build \
     --build-arg APP="$APP" \
     --build-arg FLAVOR="$FLAVOR" \
@@ -90,6 +102,7 @@ if [ "$PUBLISH" = true ]; then
     fi
 fi
 
+# TODO: the environment variable to use here may not be the same
 docker logout "$KALISIO_DOCKERHUB_URL"
 
 end_group "Building container $IMAGE_NAME:$IMAGE_TAG ..."

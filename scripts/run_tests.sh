@@ -2,6 +2,9 @@
 set -euo pipefail
 # set -x
 
+# This script is used to run backend tests.
+# It must be run in a proper 'CI workspace' to find everything it expects (cf setup_workspace.sh script).
+
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "$THIS_FILE")
 ROOT_DIR=$(dirname "$THIS_DIR")
@@ -40,9 +43,13 @@ done
 ## Init workspace
 ##
 
+# TODO: you'll need to adjust the path to the script in the 'development' repository
+# responsible for defining required environment variables for the backend tests.
+# The script argument is also to update.
 . "$WORKSPACE_DIR/development/workspaces/apps/apps.sh" skeleton
 
 ## Run tests
 ##
 
+# TODO: you'll need to adjust the second parameter to match with your $KLI_BASE
 run_app_tests "$ROOT_DIR" "workspaces/apps" "$CODE_COVERAGE" "$NODE_VER" "$MONGO_VER"
