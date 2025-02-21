@@ -6,7 +6,7 @@ Once you created your (service)[./service/md] and initialized your [activity](ac
 
 ## Display the collection
 
-Pick one of our collection component like the (grid)[https://kalisio.github.io/kdk/api/core/components.html#grid] and add it in your activity:
+Pick one of our collection component like the [grid}(https://kalisio.github.io/kdk/api/core/components.html#grid) and add it in your activity:
 ```html
 <template>
   <KActivity name="my-activity">
@@ -138,7 +138,7 @@ However, it is often useful to be able to search the collection for items matchi
 
 ### Make the collection searchable
 
-We rely on the (feathers-mongodb-fuzzy-search)[https://github.com/arve0/feathers-mongodb-fuzzy-search] module to make the collection service support searching. Declare the fields of the item you'd like to make searchable when using the provided hook.
+We rely on the [feathers-mongodb-fuzzy-search](https://github.com/arve0/feathers-mongodb-fuzzy-search) module to make the collection service support searching. Declare the fields of the item you'd like to make searchable when using the provided hook.
 You can also add the KDK `diacriticSearch` hook to support [diacritic search](https://connect.ebsco.com/s/article/What-is-diacritic-search).
 
 Update your service hooks file (usually `api/src/services/serviceName/serviceName.hooks.js`) like this:
