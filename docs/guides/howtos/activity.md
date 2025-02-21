@@ -1,7 +1,7 @@
 # Create a new activity
 
 To create a new [activity](https://kalisio.github.io/kdk/api/core/components.html#activity) initiate a component file `MyActivity.vue` in your `src/components` folder, the content of your activity will go in the default slot of the `KActivity` component like this:
-```js
+```html
 <template>
   <KActivity name="my-activity">
     // Here comes your a ctivity content
