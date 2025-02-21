@@ -74,7 +74,7 @@ function getGuidesSidebar () {
         { text: 'Manage permissions', link: '/guides/howtos/permissions' },
         { text: 'Add guards', link: '/guides/howtos/guards' },
         { text: 'Create an activity', link: '/guides/howtos/activity' },
-        { text: 'Manage collection', link: '/guides/howtos/collection' },
+        { text: 'Manage a collection', link: '/guides/howtos/collection' },
         { text: 'Add tours', link: '/guides/howtos/tours' },
         { text: 'Build a PWA', link: '/guides/howtos/pwa' },
         { text: 'Connect to Keycloak', link: '/guides/howtos/keycloak' },
