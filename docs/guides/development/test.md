@@ -253,3 +253,32 @@ Explore the various utilities located in [`kdk/test/client`](https://github.com/
 * the items of a collection
 * the account and login screens
 * the map catalog and controls
+
+##### Automated tests
+
+To ensure your application always functions as expected, you can automate ``end-to-end`` tests by creating a dedicated Docker image. This image will run the tests and compare the results with reference screenshots.
+
+We use [kash](https://github.com/kalisio/kash) our single-shell script wich contains build and run functions for the test Docker image. A GitHub Action is triggered on each push to the repository to generate the Docker image.
+
+Finally, with [kargo](https://github.com/kalisio/kargo), we deploy this image to a Kubernetes cluster and run the tests as a scheduled cron job.
+
+If a test fails, you will be notified to take corrective action. The test results can be stored in a dedicated repository, while screenshots and logs are saved in an S3 bucket.
+
+Repository structure:
+```bash
+e2e-tests-reports
+|- my-app1
+    |-- readme.md
+|- my-app2
+    |-- readme.md
+```
+
+The `readme.md` file contains formatted test results and links to the S3 bucket screenshots.
+
+:::warning
+``build_e2e_tests.sh``  and ``run_e2e_tests.sh`` are supposed to be run in a clean workspace. use ``setup_workspace.sh`` to create a clean workspace.
+:::
+
+:::tip
+By default the github action will skip the ``Build e2e tests`` remove the condition in the ``.github/workflows/main.yml`` file to enable it.
+:::
