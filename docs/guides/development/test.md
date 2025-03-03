@@ -264,7 +264,7 @@ Finally, with [kargo](https://github.com/kalisio/kargo), we deploy this image to
 
 If a test fails, you will be notified to take corrective action. The test results can be stored in a dedicated repository, while screenshots and logs are saved in an S3 bucket.
 
-Repository structure:
+Repository structure (WIP):
 ```bash
 e2e-tests-reports
 |- my-app1
