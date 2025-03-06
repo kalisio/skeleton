@@ -60,6 +60,7 @@ function getGuidesSidebar () {
         { text: 'Configure your app', link: '/guides/development/configure' },
         { text: 'Deploy your app', link: '/guides/development/deploy' },
         { text: 'Document your app', link: '/guides/development/documentation' },
+        { text: 'Managing app flavors', link: '/guides/development/flavors' },
         { text: 'Use our CLI', link: '/guides/development/kli' },
         { text: 'Tips', link: '/guides/development/tips' },
         { text: 'Troubleshooting', link: '/guides/development/troubleshooting' }
