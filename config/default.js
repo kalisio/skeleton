@@ -1,6 +1,16 @@
+const leftPane = require('./panes.left.js')
+
 // Helper declaration
-const APP_SLUG='skeleton'
-const API_PATH='/api'
+const APP_SLUG = 'skeleton'
+const API_PATH = '/api'
+
+const LEFT_PANE = {
+  content: [
+    leftPane.ACTIVITY,
+    leftPane.LOGOUT
+  ],
+  opener: true
+}
 
 module.exports = {
   appName: 'Kalisio Skeleton',
@@ -26,9 +36,9 @@ module.exports = {
     useProxy: true
   },
   screens: {
-    actions: [{ 
-      id: 'terms-policies', 
-      label: 'screen.TERMS_AND_POLICIES', 
+    actions: [{
+      id: 'terms-policies',
+      label: 'screen.TERMS_AND_POLICIES',
       dialog: {
         component: 'document/KDocument',
         url: 'skeleton-terms.md'
@@ -42,14 +52,8 @@ module.exports = {
   },
   homeActivity: {
     panes: {
-      left: {
-        content: [
-          { id: 'activity', icon: 'las la-smile', label: 'Activity.LABEL', renderer: 'item', route: { name: 'activity' } },
-          { id: 'logout', icon: 'las la-sign-out-alt', label: 'LOGOUT', renderer: 'item', route: { name: 'logout' } }
-        ],
-        opener: true
-      }
-    } 
+      left: LEFT_PANE
+    }
   },
   routes: require('../src/router/routes')
 }
