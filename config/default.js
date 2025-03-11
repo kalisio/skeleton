@@ -7,7 +7,7 @@ const API_PATH = '/api'
 const LEFT_PANE = {
   content: [
     leftPane.activityLink('activity', 'las la-smile', 'Activity.LABEL'),
-    leftPane.LOGOUT
+    leftPane.logout()
   ],
   opener: true
 }
