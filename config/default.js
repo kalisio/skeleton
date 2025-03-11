@@ -1,4 +1,4 @@
-const leftPane = require('./panes.left.js')
+const leftPane = require('./kdk/panes.left')
 
 // Helper declaration
 const APP_SLUG = 'skeleton'
@@ -6,7 +6,7 @@ const API_PATH = '/api'
 
 const LEFT_PANE = {
   content: [
-    leftPane.ACTIVITY,
+    leftPane.activityLink('activity', 'las la-smile', 'Activity.LABEL'),
     leftPane.LOGOUT
   ],
   opener: true

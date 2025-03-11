@@ -21,14 +21,14 @@ module.exports = [{
           // Because this child is the default one path is empty and name is the one of the parent route
           path: '',
           name: 'home',
-          redirect: { name: 'activity' },
+          redirect: { name: 'activity-activity' },
           tour: {
             home: tours.home,
             'side-nav': tours['side-nav']
           }
         },
-        activity: {
-          name: 'activity',
+        "activity-activity": {
+          name: 'activity-activity',
           component: 'Activity'
         }
       }

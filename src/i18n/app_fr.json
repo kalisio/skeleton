@@ -1,6 +1,8 @@
 {
   "MAIN_MENU": "Menu principal",
-  "LOGOUT": "Se déconnecter",
+  "sideNav": {
+    "LOGOUT": "Se déconnecter"
+  },
   "screen": {
     "LOGIN_WITH_KEYCLOAK": "Se connecter avec Keycloak ?",
     "ABOUT_KALISIO": "A propos",
