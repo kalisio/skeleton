@@ -1,8 +1,5 @@
 {
   "MAIN_MENU": "Main menu",
-  "sideNav": {
-    "LOGOUT": "Logout"
-  },
   "screen": {
     "LOGIN_WITH_KEYCLOAK": "Login with Keycloak ?",
     "ABOUT_KALISIO": "About",
