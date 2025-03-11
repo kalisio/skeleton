@@ -27,7 +27,7 @@ module.exports = [{
             'side-nav': tours['side-nav']
           }
         },
-        "activity-activity": {
+        activity: {
           name: 'activity-activity',
           component: 'Activity'
         }
