@@ -2,7 +2,7 @@ import _ from 'lodash'
 import path from 'path'
 import fs from 'fs-extra'
 import { fileURLToPath } from 'url'
-import kdkCore from '@kalisio/kdk/core.api.js'
+import kdkCore, { createDefaultUsers } from '@kalisio/kdk/core.api.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -28,20 +28,9 @@ export default async function () {
     app.logger.error(error.message)
   }
 
-  // Create the default user
-  const usersService = app.getService('users')
-  const defaultUsers = app.get('authentication').defaultUsers
+  // Create the default users
   // Do not use exposed passwords on staging/prod environments
-  if (defaultUsers && !process.env.NODE_APP_INSTANCE) {
-    // Create default users if not already done
-    const users = await usersService.find({ paginate: false })
-    for (let i = 0; i < defaultUsers.length; i++) {
-      const defaultUser = defaultUsers[i]
-      const createdUser = _.find(users, user => user.email === defaultUser.email)
-      if (!createdUser) {
-        app.logger.info('Initializing default user (email = ' + defaultUser.email + ', password = ' + defaultUser.password + ')')
-        await usersService.create(defaultUser)
-      }
-    }
+  if (!process.env.NODE_APP_INSTANCE) {
+    await createDefaultUsers.call(app)
   }
 }
