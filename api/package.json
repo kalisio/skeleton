@@ -1,15 +1,15 @@
 {
-  "name": "teams-api",
+  "name": "skeleton-api",
   "description": "Kalisio Teams Web Services",
   "version": "1.0.0",
-  "homepage": "https://github.com/kalisio/teams",
+  "homepage": "https://github.com/kalisio/skeleton",
   "keywords": [
     "kalisio"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalisio/teams.git"
+    "url": "git://github.com/kalisio/skeleton.git"
   },
   "author": {
     "name": "Kalisio contributors",
@@ -17,7 +17,7 @@
   },
   "contributors": [],
   "bugs": {
-    "url": "https://github.com/kalisio/teams/issues"
+    "url": "https://github.com/kalisio/skeleton/issues"
   },
   "type": "module",
   "main": "src/main.js",
