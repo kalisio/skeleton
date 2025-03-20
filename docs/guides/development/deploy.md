@@ -68,6 +68,8 @@ The CI scripts are fairly generic, and if you create a new app based on `skeleto
 
 You may now `grep TODO scripts/*.sh` and review all the places where you need to update the scripts.
 
+We tried to extensively comment our *CI scripts* to include relevant information in case you'd like to customize them.
+
 ## Deployment flavors
 
 Our CI system supports artefact **flavors**. We currently support three different flavors:
