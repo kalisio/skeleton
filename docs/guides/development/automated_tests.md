@@ -8,7 +8,7 @@ These tests are directly run by the `run_tests` **CI job** (defined in the [CI w
 
 ![Run tests steps](./../../.vitepress/public/images/run-tests-steps.svg)
 
-There's also an `additional_tests` **CI job** whose purpose is to run the same set of API tests, but using different combinations of `Node.js` and `MongoDB` versions.
+There's also an `additional_tests` **CI job** whose purpose is to run the same set of API tests, but using different combinations of `Node.js` and `MongoDB` versions. This job must be explicitely triggered to run (either via the GitHub `Run workflow` button, either via a commit message containing the `additional tests` string).
 
 ## Client (or frontend) tests
 
@@ -20,3 +20,5 @@ The `run_e2e_tests.sh` script is used in the container image to run the frontend
 * run the frontend tests (as defined in the [Client tests](./tests#client) section)
 * upload all test artefacts on an S3 storage
 * generate a report from those tests (can be through a slack notification or as a Markdown file in a git repository)
+
+This script assumes a number of environment variables are defined, like the S3 bucket where to push the artefacts, like the git repository URL where to push reports. Please check in the `run_e2e_tests.sh` script to know which environment variables are needed.
