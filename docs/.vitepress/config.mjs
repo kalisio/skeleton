@@ -59,6 +59,7 @@ function getGuidesSidebar () {
         { text: 'Testing your app', link: '/guides/development/test' },
         { text: 'Configure your app', link: '/guides/development/configure' },
         { text: 'Deploy your app', link: '/guides/development/deploy' },
+        { text: 'Automating tests', link: '/guides/development/automated_tests' },
         { text: 'Document your app', link: '/guides/development/documentation' },
         { text: 'Managing app flavors', link: '/guides/development/flavors' },
         { text: 'Use our CLI', link: '/guides/development/kli' },
