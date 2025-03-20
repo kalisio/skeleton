@@ -12,7 +12,7 @@ There's also an `additional_tests` **CI job** whose purpose is to run the same s
 
 ## Client (or frontend) tests
 
-These tests are not directly run by the CI system. Instead we build a container image using the CI system. That container image embeds everything needed to run client test (most likely [Puppeteer](https://pptr.dev/) along with the actual tests and some reference screenshots). That container is then run *on the infrastructure hosting the app*, once a day (but it can also be run locally on a developper workstation).
+These tests are not directly run by the CI system. Instead we build a container image using the CI system. That container image embeds everything needed to run client test (most likely [Puppeteer](https://pptr.dev/) along with the actual tests code and some reference screenshots). That container is then run *on the infrastructure hosting the app*, once a day (but it can also be run locally on a developper workstation).
 
 The **CI job** responsible for building the container image is `build_e2e_tests`. It uses the `e2e-tests.Dockerfile` as recipe for the image, and embeds the `run_e2e_tests.sh` **CI script**, which is used as container command.
 
