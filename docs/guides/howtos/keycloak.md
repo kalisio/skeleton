@@ -36,6 +36,7 @@ module.exports = {
         authorize_url: `${keycloakBaseUrl}/auth`,
         access_url: `${keycloakBaseUrl}/token`,
         profile_url: `${keycloakBaseUrl}/userinfo`,
+        logout_url: `${keycloakBaseUrl}/logout`,
         nonce: true
       }
     }
@@ -52,13 +53,21 @@ For configuration options details you should have a look to the [Grant documenta
 
 ### Router
 
-Ensure your routes configuration (usually `/src/router/routes.js`) allows the authentication token to be set in the URL of your application
+Ensure your routes configuration (usually `/src/router/routes.js`) allows the authentication token to be set in the URL of your application. If you'd like to synchronize the logout from your application with the logout from keycloak you can also use the `KOAuthLogoutScreen` instead of the standard `KLogoutScreen` on logout, take care that the route then requires a `provider` parameter being the name of the OAuth provider to logout from (like `keycloak`):
 ```js
 module.exports = [{
   path: '/:token?',
   name: 'index',
   component: 'Index',
-  ...
+  children: {
+    login: 'screen/KLoginScreen',
+    'logout/:provider?': {
+      name: 'logout',
+      component: 'screen/KOAuthLogoutScreen',
+      meta: { authenticated: true }
+    }
+    ...
+  }
 }]
 ```
 
@@ -134,6 +143,26 @@ import KScreen from './KScreen.vue'
 // Data
 const actions = ref(_.get(config, 'screens.login.actions', []))
 </script>
+```
+
+### OAuth logout
+
+In order to synchronize the logout from your application with the logout from keycloak your logout action should specify the `provider` parameter of the route:
+```js
+leftPane: {
+  content: [
+  ...
+  {
+    id: 'logout-action',
+    icon: 'las la-sign-out-alt',
+    label: 'layout.LOGOUT',
+    route: {
+      name: 'logout',
+      params: { provider: 'keycloak' }
+    },
+    renderer: 'item'
+  }]
+}
 ```
 
 ## Manage permissions
