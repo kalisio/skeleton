@@ -1,3 +1,3 @@
 module.exports = {
-  'side-nav': require('./map/side-nav')
+  'side-nav': require('./kdk/pane.left')
 }
