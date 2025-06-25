@@ -248,7 +248,7 @@ after(async function () {
 
 ##### Utility functions
 
-Explore the various utilities located in [`kdk/test/client`](https://github.com/kalisio/kdk/tree/master/test/client) that will be helpful to manage:
+Explore the various utilities located in [`kdk/extras/tests/`](https://github.com/kalisio/kdk/tree/master/extras/tests) that will be helpful to manage:
 * the application layout
 * the items of a collection
 * the account and login screens
