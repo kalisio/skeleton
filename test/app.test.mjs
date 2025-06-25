@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { core } from '@kalisio/kdk/test.client.js'
+import { core } from './kdk/index.mjs'
 
 const suite = 'app'
 

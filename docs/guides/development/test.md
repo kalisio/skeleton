@@ -141,7 +141,7 @@ A lot of options can be passed to the runner and some defaults provided using en
   baseUrl: 'https://my.domain.com',
   browser: { // Puppeteer browser options
     // defaults to chrome or use BROWSER env var
-    product: 'chrome',
+    browser: 'chrome',
     // defaults to false or use HEADLESS env var
     headless: true,
     // default to true if NODE_ENV env var equals 'development'
