@@ -17,7 +17,7 @@ describe(suite, () => {
       browser: {
         slowMo: 1
       },
-      lang: 'fr-FR'
+      lang: 'fr'
     })
     page = await runner.start()
   })
