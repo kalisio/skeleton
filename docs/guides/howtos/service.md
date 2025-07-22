@@ -124,6 +124,28 @@ export default async function () {
 
 ```
 
+If your service relies on some options available in the application configuration you can declare it like this in your `api/config/default.js`:
+``` js
+module.exports = {
+  messages: {
+    paginate: {
+      default: 10,
+      max: 50
+    }
+  }
+}
+```
+
+Then use it when initializing your service:
+``` js
+const messageService = await app.createService('messages', Object.assign({
+  modelsPath,
+  servicesPath,
+  methods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'publishMessage'],
+  events: ['message-published']
+}, app.get('messages'))
+```
+
 ## Frontend service
 
 By default client-side services related to backend services don't have to be explicitely created as Feathers will automatically generate a wrapper on the first call of [`api.getService()`](https://kalisio.github.io/kdk/api/core/application.html#getservice-name-context).
