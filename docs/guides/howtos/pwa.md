@@ -80,7 +80,23 @@ module.exports = {
 For a reference implementation, see [kApp/api/config/default.cjs](https://github.com/kalisio/kApp/blob/master/api/config/default.cjs#L213).
 :::
 
-### Step 4: Subscribe to push notifications in the client
+### Step 4: Expose the VAPID public key in service capabilities
+
+To allow clients to access the VAPID public key required for subscribing to push notifications, you need to expose it through the application's capabilities. 
+
+Edit the `app/api/src/services.js` file :
+```js
+const response = {
+    // Other
+    vapidPublicKey: app.get('push').vapidDetails.publicKey
+}
+```
+
+::: tip
+For a reference implementation, see [kApp/api/src/services.js](https://github.com/kalisio/kApp/blob/master/api/src/services.js#L21).
+:::
+
+### Step 5: Subscribe to push notifications in the client
 
 To receive push notifications, the client must subscribe to the push service after user authentication. [KDK provides a utility function](https://github.com/kalisio/kdk/blob/master/core/client/utils/utils.push.js#L17) to handle this subscription.
 
@@ -97,7 +113,7 @@ Events.once('user-changed', utils.subscribeToPushNotifications)
 For a reference implementation, see [kApp/src/boot/kdk.js](https://github.com/kalisio/kApp/blob/master/src/boot/kdk.js#L70).
 :::
 
-### Step 5: Handle push notifications in the service worker
+### Step 6: Handle push notifications in the service worker
 
 The service worker is responsible for receiving and displaying push notifications. Update the custom service worker file to handle push events and notification clicks.
 
@@ -127,7 +143,7 @@ self.addEventListener('notificationclick', event => {
 For a reference implementation, see [kApp/src-pwa/custom-service-worker.js](https://github.com/kalisio/kApp/blob/master/src-pwa/custom-service-worker.js#L24).
 :::
 
-### Step 6: Sending push notifications
+### Step 7: Sending push notifications
 
 To send a push notification, use the push service created.
 
