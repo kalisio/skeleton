@@ -22,7 +22,7 @@ A web app manifest provides essential information about the application, such as
 When the application is ready to be installed or updated, a pop-up window will appear.
 :::
 
-## Implementing Web Push Notifications in a Kalisio Application
+## Implementing web push notifications
 
 This section outlines the process for integrating web push notifications into a Kalisio application. Web push notifications allow your application to send real-time notifications to users' devices. 
 
@@ -30,7 +30,7 @@ This section outlines the process for integrating web push notifications into a 
 Web push notifications are managed by the [feathers-webpush module](https://github.com/kalisio/feathers-webpush), which must be added as a dependency in the application's development folder.
 :::
 
-### Step 1: Generate VAPID Keys
+### Step 1: Generate VAPID keys
 
 VAPID (Voluntary Application Server Identification) keys are required for securely sending push notifications. These keys identify your application to the push service and are used for encrypting payloads.
 
@@ -47,7 +47,7 @@ web-push generate-vapid-keys --json
 For more details on the CLI, see [web-push CLI documentation](https://github.com/web-push-libs/web-push#command-line).
 :::
 
-### Step 2: Configure Environment Variable
+### Step 2: Configure environment variable
 
 ```plain
 VAPID_SUBJECT="mailto:email-notifications@kalisio.com"
@@ -80,7 +80,7 @@ module.exports = {
 For a reference implementation, see [kApp/api/config/default.cjs](https://github.com/kalisio/kApp/blob/master/api/config/default.cjs#L213).
 :::
 
-### Step 4: Subscribe to Push Notifications in the Client
+### Step 4: Subscribe to push notifications in the client
 
 To receive push notifications, the client must subscribe to the push service after user authentication. [KDK provides a utility function](https://github.com/kalisio/kdk/blob/master/core/client/utils/utils.push.js#L17) to handle this subscription.
 
@@ -97,7 +97,7 @@ Events.once('user-changed', utils.subscribeToPushNotifications)
 For a reference implementation, see [kApp/src/boot/kdk.js](https://github.com/kalisio/kApp/blob/master/src/boot/kdk.js#L70).
 :::
 
-### Step 5: Handle Push Notifications in the Service Worker
+### Step 5: Handle push notifications in the service worker
 
 The service worker is responsible for receiving and displaying push notifications. Update the custom service worker file to handle push events and notification clicks.
 
@@ -127,7 +127,7 @@ self.addEventListener('notificationclick', event => {
 For a reference implementation, see [kApp/src-pwa/custom-service-worker.js](https://github.com/kalisio/kApp/blob/master/src-pwa/custom-service-worker.js#L24).
 :::
 
-### Step 6: Sending Push Notifications
+### Step 6: Sending push notifications
 
 To send a push notification, use the push service created.
 
