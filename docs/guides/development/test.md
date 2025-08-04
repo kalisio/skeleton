@@ -70,11 +70,11 @@ You can use the `TEST_MODE` environment variable to change the test mode.
 ### Writing client tests
 
 In addition to **Mocha** and **Chai** helpers, the **KDK** provides helper functions to test your UI using [Puppeteer](https://github.com/puppeteer/puppeteer):
-* test your UI components: the **Runner class** allows you to manage a **Puppereer** browser as well as the default page attached to this browser. In addition, it provides a useful inteface to override permissions, set items in local storage, catch warnings and error messages from the console, take screenshots and compare them to some reference images. 
+* test your UI components: the **Runner class** allows you to manage a **Puppeteer** browser as well as the default page attached to this browser. In addition, it provides a useful inteface to override permissions, set items in local storage, catch warnings and error messages from the console, take screenshots and compare them to some reference images. 
 
 * deal with your app's API: the **Api class** allows you to access the differents services exposed by the API.
 
-* structure your project test structure: the **KDK** assumes that a directory has been assigned to each **test suite** in order to store test data. These directories, are stored in a more general `data` directory and must be named with the **test suite** name. If you have any screenshot references then then they must stored in a decidacted sub directory named `screenrefs`.
+* structure your project test structure: the **KDK** assumes that a directory has been assigned to each **test suite** in order to store test data. These directories, are stored in a more general `data` directory and must be named with the **test suite** name. If you have any screenshot references then then they must stored in a dedicated sub directory named `screenrefs`.
 
 ```bash
 test
@@ -253,3 +253,12 @@ Explore the various utilities located in [`kdk/extras/tests/`](https://github.co
 * the items of a collection
 * the account and login screens
 * the map catalog and controls
+
+::: warning 
+To use the kdk test libraries, you must the following lines to your app's package.json:
+```json
+"pixelmatch": "^5.2.0",
+"pngjs": "^5.0.0",
+"superagent": "^5.1.0"
+```
+::: 
