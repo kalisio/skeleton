@@ -1,6 +1,6 @@
-# Implementing Matomo Analytics in a Quasar application
+# Implementing Matomo Analytics in a KDK-based application 
 
-This guide explains how to integrate [Matomo](https://matomo.org/) analytics into a Quasar application.  
+This guide explains how to integrate [Matomo](https://matomo.org/) analytics into a KDK-based application .  
 Matomo is an open-source analytics platform, similar to Google Analytics, but self-hosted.
 
 ::: tip
@@ -49,7 +49,7 @@ volumes:
 
 ## Step 1: Install the Vue Matomo plugin
 
-In your Quasar application, install the [vue-matomo plugin](https://github.com/AmazingDreams/vue-matomo) dependency :
+In your KDK-based application , install the [vue-matomo plugin](https://github.com/AmazingDreams/vue-matomo) dependency :
 
 ```bash
 yarn add vue-matomo
