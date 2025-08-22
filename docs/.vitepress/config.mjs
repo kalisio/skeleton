@@ -80,7 +80,8 @@ function getGuidesSidebar () {
         { text: 'Add tours', link: '/guides/howtos/tours' },
         { text: 'Build a PWA', link: '/guides/howtos/pwa' },
         { text: 'Connect to Keycloak', link: '/guides/howtos/keycloak' },
-        { text: 'Connect to a planet', link: '/guides/howtos/planet' }
+        { text: 'Connect to a planet', link: '/guides/howtos/planet' },
+        { text: 'Add Matomo', link: '/guides/howtos/matomo' }
       ]
     }
   ]
