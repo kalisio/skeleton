@@ -63,13 +63,12 @@ Update `api/src/services.js` :
 app.use(app.get('apiPath') + '/capabilities', (req, res, next) => {
   const response = {
     // Other configuration
-    matomo: {
+  }
+  if (process.env.MATOMO_HOST && process.env.MATOMO_SITE_ID) {
+    response.matomo = {
       host: process.env.MATOMO_HOST,
       siteId: parseInt(process.env.MATOMO_SITE_ID)
     }
-  }
-  if (process.env.BUILD_NUMBER) {
-    response.buildNumber = process.env.BUILD_NUMBER
   }
   res.json(response)
 })
@@ -85,22 +84,27 @@ import { Store } from '@kalisio/kdk/core.client'
 import VueMatomo from 'vue-matomo'
 
 export default async ({ app, router }) => {
-  app.use(VueMatomo, {
-    host: _.get(Store, 'capabilities.api.matomo.host'),
-    siteId: _.get(Store, 'capabilities.api.matomo.siteId'),
-    router,
-    enableLinkTracking: true,
-    trackInitialView: true,
-    // Request user consent before tracking:
-    disableCookies: true,
-    requireConsent: false,
-    requireCookieConsent: false,
-    // Measure time spent on page
-    enableHeartBeatTimer: true,
-    heartBeatTimerInterval: 15,
-    // https://developer.matomo.org/guides/tracking-javascript-guide#user-id
-    userId: undefined
-  })
+  const matomoHost = _.get(Store, 'capabilities.api.matomo.host')
+  const matomoSiteId = _.get(Store, 'capabilities.api.matomo.siteId')
+
+  if (matomoHost && matomoSiteId) {
+    app.use(VueMatomo, {
+      host: matomoHost,
+      siteId: matomoSiteId,
+      router,
+      enableLinkTracking: true,
+      trackInitialView: true,
+      // Request user consent before tracking:
+      disableCookies: true,
+      requireConsent: false,
+      requireCookieConsent: false,
+      // Measure time spent on page
+      enableHeartBeatTimer: true,
+      heartBeatTimerInterval: 15,
+      // https://developer.matomo.org/guides/tracking-javascript-guide#user-id
+      userId: undefined
+    })
+  }
 }
 ```
 
