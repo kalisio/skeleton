@@ -55,17 +55,36 @@ In your KDK-based application , install the [vue-matomo plugin](https://github.c
 yarn add vue-matomo
 ```
 
-## Step 2: Create a Quasar boot file
+## Step 2: Configure Matomo settings
+
+Update `src/config/default.js` :
+
+```js
+module.exports = {
+  // Other configuration
+  matomo: {
+    host: process.env.MATOMO_HOST,
+    siteId: process.env.MATOMO_SITE_ID
+  },
+  // Other configuration
+}
+```
+
+## Step 3: Create a Quasar boot file
 
 Create `src/boot/matomo.js` :
 
 ```js
+import _ from 'lodash'
+import config from 'config'
 import VueMatomo from 'vue-matomo'
 
 export default async ({ app, router }) => {
   app.use(VueMatomo, {
-    host: 'http://localhost:8080/', // Matomo instance
-    siteId: 1,                      // Site ID from Matomo
+    // Matomo instance
+    host: _.get(config.matomo, 'host'),
+    // Site ID from Matomo
+    siteId: _.get(config.matomo, 'siteId'),
     router,                         // Enables page tracking
     enableLinkTracking: true,       // Tracks external link clicks
     trackInitialView: true,         // Tracks the first page view
