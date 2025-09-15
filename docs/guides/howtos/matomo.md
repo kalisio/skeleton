@@ -55,19 +55,22 @@ In your KDK-based application , install the [vue-matomo plugin](https://github.c
 yarn add vue-matomo
 ```
 
-## Step 2: Configure Matomo settings
-
-Update `src/config/default.js` :
+## Step 2: Configure Matomo settings in capabilities
 
 ```js
-module.exports = {
-  // Other configuration
-  matomo: {
-    host: process.env.MATOMO_HOST,
-    siteId: process.env.MATOMO_SITE_ID
-  },
-  // Other configuration
-}
+app.use(app.get('apiPath') + '/capabilities', (req, res, next) => {
+  const response = {
+    // Other configuration
+    matomo: {
+      host: process.env.MATOMO_HOST,
+      siteId: parseInt(process.env.MATOMO_SITE_ID)
+    }
+  }
+  if (process.env.BUILD_NUMBER) {
+    response.buildNumber = process.env.BUILD_NUMBER
+  }
+  res.json(response)
+})
 ```
 
 ## Step 3: Create a Quasar boot file
@@ -76,18 +79,16 @@ Create `src/boot/matomo.js` :
 
 ```js
 import _ from 'lodash'
-import config from 'config'
+import { Store } from '@kalisio/kdk/core.client'
 import VueMatomo from 'vue-matomo'
 
 export default async ({ app, router }) => {
   app.use(VueMatomo, {
-    // Matomo instance
-    host: _.get(config.matomo, 'host'),
-    // Site ID from Matomo
-    siteId: _.get(config.matomo, 'siteId'),
-    router,                         // Enables page tracking
-    enableLinkTracking: true,       // Tracks external link clicks
-    trackInitialView: true,         // Tracks the first page view
+    host: _.get(Store, 'capabilities.api.matomo.host'),
+    siteId: _.get(Store, 'capabilities.api.matomo.siteId'),
+    router,
+    enableLinkTracking: true,
+    trackInitialView: true,
     // Request user consent before tracking:
     disableCookies: true,
     requireConsent: false,
@@ -111,6 +112,12 @@ Edit `quasar.config.js` and add `matomo` to the `boot` section:
 
 ```js
 boot: [
+  'kdk',
+  'tour',
   'matomo'
-]
+],
 ```
+
+:::tip
+The order of registration is important: `kdk` must be loaded first. 
+:::
