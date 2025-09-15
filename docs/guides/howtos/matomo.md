@@ -88,7 +88,6 @@ export default async ({ app, router }) => {
     router,                         // Enables page tracking
     enableLinkTracking: true,       // Tracks external link clicks
     trackInitialView: true,         // Tracks the first page view
-    domains: ['localhost:8082'],    // App domain (prevents false outlinks)
     // Request user consent before tracking:
     disableCookies: true,
     requireConsent: false,
@@ -97,8 +96,7 @@ export default async ({ app, router }) => {
     enableHeartBeatTimer: true,
     heartBeatTimerInterval: 15,
     // https://developer.matomo.org/guides/tracking-javascript-guide#user-id
-    userId: undefined,
-    debug: process.env.NODE_ENV === 'development'
+    userId: undefined
   })
 }
 ```
