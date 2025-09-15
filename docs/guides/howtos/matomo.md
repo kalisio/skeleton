@@ -57,6 +57,8 @@ yarn add vue-matomo
 
 ## Step 2: Configure Matomo settings in capabilities
 
+Update `api/src/services.js` :
+
 ```js
 app.use(app.get('apiPath') + '/capabilities', (req, res, next) => {
   const response = {
