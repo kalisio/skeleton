@@ -255,7 +255,7 @@ Explore the various utilities located in [`kdk/extras/tests/`](https://github.co
 * the map catalog and controls
 
 ::: warning 
-To use the kdk test libraries, you must the following lines to your app's package.json:
+To use the kdk test libraries, you must add the following lines to your app's package.json:
 ```json
 "pixelmatch": "^5.2.0",
 "pngjs": "^5.0.0",
