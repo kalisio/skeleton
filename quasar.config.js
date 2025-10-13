@@ -10,7 +10,6 @@
 
 const path = require('path')
 const fs = require('fs')
-const ESLintPlugin = require('eslint-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { configure } = require('quasar/wrappers')
 
