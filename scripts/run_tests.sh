@@ -53,3 +53,5 @@ done
 
 # TODO: you'll need to adjust the second parameter to match with your $KLI_BASE
 run_app_tests "$ROOT_DIR" "workspaces/apps" "$CODE_COVERAGE" "$NODE_VER" "$MONGO_VER"
+
+cd "$ROOT_DIR" && sonar-scanner
