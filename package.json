@@ -62,7 +62,8 @@
       "__THEME",
       "test",
       "fixture",
-      "self"
+      "self",
+      "location"
     ]
   },
   "dependencies": {
