@@ -27,7 +27,7 @@ while getopts "m:n:sr:" option; do
         n) # defines node version
             NODE_VER=$OPTARG
              ;;
-        s) # publish code coverage
+        s) # enable SonarQube analysis and publish code quality & coverage results
             RUN_SONAR=true
             ;;
         r) # report outcome to slack
