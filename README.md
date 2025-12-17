@@ -2,8 +2,8 @@
 
 [![Latest Release](https://img.shields.io/github/v/tag/kalisio/skeleton?sort=semver&label=latest)](https://github.com/kalisio/skeleton/releases)
 [![CI](https://github.com/kalisio/skeleton/actions/workflows/main.yaml/badge.svg)](https://github.com/kalisio/skeleton/actions/workflows/main.yaml)
-[![Code Climate](https://codeclimate.com/github/kalisio/skeleton/badges/gpa.svg)](https://codeclimate.com/github/kalisio/skeleton)
-[![Test Coverage](https://codeclimate.com/github/kalisio/skeleton/badges/coverage.svg)](https://codeclimate.com/github/kalisio/skeleton/coverage)
+[![Maintainability Issues](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-skeleton&metric=software_quality_maintainability_issues&token=sqb_71b42a0b932dce9d9b6164e1fa1eb82d81ed3398)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-skeleton)
+[![Coverage](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-skeleton&metric=coverage&token=sqb_71b42a0b932dce9d9b6164e1fa1eb82d81ed3398)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-skeleton)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/documentation-available-brightgreen.svg)](https://kalisio.github.io/skeleton/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/kalisio/skeleton.svg)](https://hub.docker.com/r/kalisio/skeleton/)
