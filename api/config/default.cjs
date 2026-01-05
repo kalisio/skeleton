@@ -14,7 +14,7 @@ if (process.env.NODE_APP_INSTANCE === 'dev') {
 } else if (process.env.NODE_APP_INSTANCE === 'test') {
   domain = 'https://skeleton.test.kalisio.xyz'
 } else if (process.env.NODE_APP_INSTANCE === 'prod') {
-  domain = 'https://skeleton.planet.kalisio.xyz'
+  domain = 'https://skeleton.kalisio.xyz'
 } else {
   // Otherwise we are on a developer machine
   if (process.env.NODE_ENV === 'development') {
