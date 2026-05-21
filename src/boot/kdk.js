@@ -3,9 +3,15 @@ import _ from 'lodash'
 import logger from 'loglevel'
 import config from 'config'
 import { Notify } from 'quasar'
+import {
+  initializeApi, i18n,
+  directives as kdkCoreDirectives,
+  utils as kdkCoreUtils,
+  Store, Events,
+  beforeGuard, authenticationGuard
+} from '@kalisio/kdk/core.client'
 import appHooks from '../main.hooks'
 import services from '../services'
-import { initializeApi, i18n, utils as kdkCoreUtils, Store, Events, beforeGuard, authenticationGuard } from '@kalisio/kdk/core.client'
 
 export default async ({ app }) => {
   // Initiate the client
