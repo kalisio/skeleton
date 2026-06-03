@@ -14,6 +14,11 @@ WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 
 . "$THIS_DIR/kash/kash.sh"
 
+## Setup automatic cleanup of any file decrypted by kash functions
+##
+sops_init
+
+
 ## Parse options
 ##
 
@@ -36,8 +41,11 @@ while getopts "d:n:pr:" option; do
             ;;
         r) # report outcome to slack
             CI_STEP_NAME=$OPTARG
-            load_env_files "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
-            trap 'slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$?" "$SLACK_WEBHOOK_APPS"' EXIT
+            load_env_files_secure "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
+            
+            # Reinstall the EXIT trap to combine slack report AND sops cleanup
+            # (sops_init installed its own trap, we replace it with this combined version)
+            trap 'slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$?" "$SLACK_WEBHOOK_APPS"; _sops_cleanup' EXIT
             ;;
         *)
             ;;
@@ -59,8 +67,8 @@ echo "About to build $APP v$VERSION-$FLAVOR ..."
 
 # This loads credentials for the target container repository
 # TODO: you may adjust these files to use the ones in your associated 'development' repository
-load_env_files "$WORKSPACE_DIR/development/common/kalisio_dockerhub.enc.env"
-load_value_files "$WORKSPACE_DIR/development/common/KALISIO_DOCKERHUB_PASSWORD.enc.value"
+load_env_files_secure "$WORKSPACE_DIR/development/common/kalisio_dockerhub.enc.env"
+load_value_files_secure "$WORKSPACE_DIR/development/common/KALISIO_DOCKERHUB_PASSWORD.enc.value"
 
 ## Build container
 ##
