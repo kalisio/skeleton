@@ -16,7 +16,7 @@ WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 
 
 slack_report() {
-    slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$?" "$SLACK_WEBHOOK_APPS"
+    slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$KASH_EXIT_CODE" "$SLACK_WEBHOOK_APPS"
 }
 
 ## Parse options

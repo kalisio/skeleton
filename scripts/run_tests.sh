@@ -13,7 +13,9 @@ WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 . "$THIS_DIR/kash/kash.sh"
 
 slack_report() {
-    slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$?" "$SLACK_WEBHOOK_APPS"
+    echo "  \$? au début de slack_report = $?"
+    echo "  \$KASH_EXIT_CODE au début de slack_report = $KASH_EXIT_CODE"
+    slack_ci_report "$ROOT_DIR" "$CI_STEP_NAME" "$KASH_EXIT_CODE" "$SLACK_WEBHOOK_APPS"
 }
 
 ## Parse options
@@ -54,7 +56,6 @@ done
 
 ## Run tests
 ##
-
 # TODO: you'll need to adjust the second parameter to match with your $KLI_BASE
 run_app_tests "$ROOT_DIR" "workspaces/apps" "$RUN_SONAR" "$NODE_VER" "$MONGO_VER"
 
