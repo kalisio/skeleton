@@ -52,7 +52,10 @@ FLAVOR=$(get_app_flavor)
 # This loads credentials for the target container repository
 # TODO: you may adjust these files to use the ones in your associated 'development' repository
 load_env_files "$WORKSPACE_DIR/development/common/kalisio_harbor.enc.env"
-KALISIO_HARBOR_PASSWORD=$(decrypt_file "$WORKSPACE_DIR/development/common/KALISIO_HARBOR_PASSWORD.enc.value")
+
+KALISIO_HARBOR_PASSWORD=$(mktemp)
+decrypt_file "$WORKSPACE_DIR/development/common/KALISIO_HARBOR_PASSWORD.enc.value" \
+             "$KALISIO_HARBOR_PASSWORD" > /dev/null
 
 
 # TODO: you may change the path for the container image, here it'll be pushed in a 'kalisio' group
