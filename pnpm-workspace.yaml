@@ -1,3 +1,12 @@
+packages:
+  - '.'
+  - '!api/**'
+  - '!docs/**'
+allowBuilds:
+  canvas: true
+  cbor-extract: true
+  core-js: true
+  puppeteer: true
 overrides:
   '@kalisio/kdk': link:../kdk
   vue: 3.4.14
