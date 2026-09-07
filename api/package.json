@@ -2,6 +2,7 @@
   "name": "skeleton-api",
   "description": "Kalisio Teams Web Services",
   "version": "1.0.0",
+  "packageManager": "pnpm@10.34.5",
   "homepage": "https://github.com/kalisio/skeleton",
   "keywords": [
     "kalisio"
@@ -19,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/kalisio/skeleton/issues"
   },
-  "type": "module",
   "main": "src/main.js",
   "scripts": {
     "release:patch": "npm --no-git-tag-version version patch",
@@ -39,6 +39,20 @@
       "mocha"
     ]
   },
+  "dependencies": {
+    "@feathersjs/authentication": "^5.0.8",
+    "@feathersjs/express": "^5.0.8",
+    "@feathersjs/feathers": "^5.0.8",
+    "@kalisio/kdk": "link:../../kdk",
+    "containerized": "^1.0.2",
+    "lodash": "~4.18.1",
+    "lodash-es": "~4.18.1",
+    "feathers-hooks-common": "~8.2.1",
+    "feathers-mongodb-fuzzy-search": "^2.0.1",
+    "fs-extra": "^8.1.0",
+    "http-proxy-middleware": "^0.17.4",
+    "winston": "~3.19.0"
+  },
   "devDependencies": {
     "@slack/webhook": "^5.0.2",
     "c8": "^7.11.0",
@@ -51,16 +65,5 @@
     "nodemon": "^1.11.0",
     "shelljs": "^0.8.5",
     "standard": "^16.0.4"
-  },
-  "dependencies": {
-    "@feathersjs/authentication": "^5.0.8",
-    "@feathersjs/express": "^5.0.8",
-    "@feathersjs/feathers": "^5.0.8",
-    "containerized": "^1.0.2",
-    "feathers-hooks-common": "^5.0.6",
-    "feathers-mongodb-fuzzy-search": "^2.0.1",
-    "fs-extra": "^8.1.0",
-    "http-proxy-middleware": "^0.17.4",
-    "winston": "^3.2.1"
   }
 }
