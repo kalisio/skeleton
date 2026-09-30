@@ -7,6 +7,8 @@ settings:
 overrides:
   '@kalisio/kdk': link:../../kdk
 
+pnpmfileChecksum: sha256-gukwtut092+oOGvKH71McWe4EDFRXU4U+eq9OgH6k/0=
+
 importers:
 
   .:

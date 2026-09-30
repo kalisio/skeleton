@@ -7,6 +7,8 @@ settings:
 overrides:
   vue: 3.4.14
 
+pnpmfileChecksum: sha256-K7twCySiILfF3FErLVAJDYMyrMfLdh/v49rBlvXf5kc=
+
 importers:
 
   .:
