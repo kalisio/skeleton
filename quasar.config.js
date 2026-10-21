@@ -10,6 +10,7 @@
 
 const path = require('path')
 const fs = require('fs')
+const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { configure } = require('quasar/wrappers')
 
@@ -94,6 +95,8 @@ module.exports = configure(function (ctx) {
       extendWebpack (cfg) {
         cfg.resolve.fallback = {
           fs: false,
+          'fs/promises': false,
+          sharp: false,
           path: require.resolve('path-browserify'),
           crypto: require.resolve('crypto-browserify'),
           stream: require.resolve('stream-browserify'),
@@ -123,7 +126,13 @@ module.exports = configure(function (ctx) {
         cfg.experiments = {
           ...cfg.experiments,
           asyncWebAssembly: true
-        }
+        },
+        // @kalisio/common-graphics dynamically imports these Node-only modules behind a runtime
+        // browser check (toPNG() is server-only), but webpack still statically resolves the
+        // dynamic import() calls regardless - the 'node:' URI scheme is detected before alias/
+        // fallback substitution ever applies, so IgnorePlugin (which runs on the raw request,
+        // before resolution) is required to actually drop them from the client bundle
+        cfg.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^node:fs\/promises$|^sharp$/ }))
       }
     },
 
