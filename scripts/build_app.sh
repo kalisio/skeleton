@@ -41,7 +41,7 @@ while getopts "d:n:pr:" option; do
             ;;
         r) # report outcome to slack
             CI_STEP_NAME=$OPTARG
-            load_env_files_secure "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
+            load_env_files "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
             add_function_to_trap slack_report
             ;;
         *)
@@ -64,7 +64,7 @@ echo "About to build $APP v$VERSION-$FLAVOR ..."
 
 # This loads credentials for the target container repository
 # TODO: you may adjust these files to use the ones in your associated 'development' repository
-load_env_files_secure "$WORKSPACE_DIR/development/common/kalisio_dockerhub.enc.env"
+load_env_files "$WORKSPACE_DIR/development/common/kalisio_dockerhub.enc.env"
 # load_value_files_secure "$WORKSPACE_DIR/development/common/KALISIO_DOCKERHUB_PASSWORD.enc.value"
 
 ## Build container

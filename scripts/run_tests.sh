@@ -38,7 +38,7 @@ while getopts "m:n:sr:" option; do
             ;;
         r) # report outcome to slack
             CI_STEP_NAME=$OPTARG
-            load_env_files_secure "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
+            load_env_files "$WORKSPACE_DIR/development/common/SLACK_WEBHOOK_APPS.enc.env"
             add_function_to_trap slack_report
             ;;
         *)
