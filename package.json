@@ -34,6 +34,7 @@
     "pwa:build": "pnpm provision && cross-env BUILD_MODE=pwa quasar build -m pwa",
     "analyze": "cross-env ANALYZE_BUNDLE=1 pnpm build",
     "lint": "standard src/**/*.js src-pwa/**/*.js src/**/*.vue test/**/*.mjs --fix",
+    "docs:build": "cd docs && pnpm install --ignore-workspace && pnpm build",
     "benchmark": "node ./benchmark",
     "configs:cp": "shx mkdir -p ./config/kdk && shx cp -R node_modules/@kalisio/kdk/extras/configs/* config/kdk",
     "css:cp": "shx cp -R node_modules/@kalisio/kdk/extras/css/* src/css/kdk",

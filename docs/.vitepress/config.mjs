@@ -30,7 +30,7 @@ export default defineConfig({
       include: ['keycloak-js', 'lodash'],
     },
     ssr: {
-      noExternal: ['vitepress-theme-kalisio']
+      noExternal: ['@kalisio/vitepress-theme']
     }
   }
 })
