@@ -44,6 +44,23 @@ module.exports = {
     port: process.env.HTTPS_PORT || 8084
   },
   */
+  helmet: {
+    contentSecurityPolicy: {
+      // Since helmet v4 default directives (eg script-src 'self') are added unless disabled,
+      // they would block WebAssembly (automerge), map tiles or API calls on other domains.
+      useDefaults: false,
+      directives: {
+        defaultSrc: ['*', 'data:', 'blob:', "'unsafe-inline'", "'unsafe-eval'"],
+        frameAncestors: [
+          'http://localhost:*',
+          'https://*.kalisio.xyz',
+          'https://*.kalisio.com',
+          'https://*.kalisio.fr'
+        ]
+      }
+    },
+    frameguard: false
+  },
   apiPath: API_PREFIX,
   paginate: {
     default: 10,
