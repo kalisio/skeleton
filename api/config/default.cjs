@@ -1,7 +1,7 @@
 var path = require('path')
 var fs = require('fs')
 var winston = require('winston')
-var containerized = require('containerized')()
+var isDocker = require('is-docker')
 
 const serverPort = process.env.PORT || 8081
 // Required to know webpack port so that in dev we can build correct URLs
@@ -133,6 +133,6 @@ module.exports = {
   },
   db: {
     adapter: 'mongodb',
-    url: process.env.DB_URL || (containerized ? 'mongodb://mongodb:27017/skeleton' : 'mongodb://127.0.0.1:27017/skeleton')
+    url: process.env.DB_URL || (isDocker() ? 'mongodb://mongodb:27017/skeleton' : 'mongodb://127.0.0.1:27017/skeleton')
   }
 }
