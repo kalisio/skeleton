@@ -24,7 +24,7 @@ export class Server {
     const proxyTable = this.app.get('proxyTable') || {}
     Object.entries(proxyTable).forEach(([context, config]) => {
       const options = typeof config === 'string' ? { target: config } : config
-      app.use(createProxyMiddleware({ ...options, pathFilter: context }))
+      this.app.use(createProxyMiddleware({ ...options, pathFilter: context }))
     })
   }
 
