@@ -83,6 +83,9 @@ src/css/kdk/*
 !src/css/kdk/.gitkeep
 test/kdk
 
-# vitepress
+# PNPM hook
+.pnpmfile.cjs
+
+# Vitepress
 docs/.vitepress/cache
 docs/.vitepress/dist
