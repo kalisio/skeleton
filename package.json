@@ -69,17 +69,17 @@
     ]
   },
   "dependencies": {
-    "@automerge/automerge-repo": "^2.4.0",
-    "@automerge/automerge-repo-network-websocket": "^2.4.0",
-    "@automerge/automerge-repo-storage-indexeddb": "^2.4.0",
+    "@automerge/automerge-repo": "catalog:",
+    "@automerge/automerge-repo-network-websocket": "catalog:",
+    "@automerge/automerge-repo-storage-indexeddb": "catalog:",
     "@casl/ability": "^6.3.0",
     "@casl/mongoose": "^7.1.0",
-    "@feathersjs/client": "^5.0.8",
-    "@kalisio/common-core": "1.0.1",
-    "@kalisio/common-graphics": "1.0.1",
-    "@kalisio/feathers-automerge": "^0.4.0",
-    "@kalisio/feathers-s3": "3.1.0",
-    "@kalisio/feathers-webpush": "3.1.0",
+    "@feathersjs/client": "catalog:",
+    "@kalisio/common-core": "catalog:",
+    "@kalisio/common-graphics": "catalog:",
+    "@kalisio/feathers-automerge": "catalog:",
+    "@kalisio/feathers-s3": "catalog:",
+    "@kalisio/feathers-webpush": "catalog:",
     "@kalisio/kdk": "~2.9.1",
     "@pdfme/ui": "^5.2.0",
     "@quasar/extras": "1.16.3",
@@ -169,5 +169,9 @@
     "last 8 FirefoxAndroid versions",
     "last 10 iOS versions",
     "last 5 Opera versions"
-  ]
+  ],
+  "metaWorkspace": {
+    "version": "0.11.0",
+    "syncedAt": "2026-10-30T06:18:20.778Z"
+  }
 }
