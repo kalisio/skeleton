@@ -93,6 +93,10 @@ module.exports = configure(function (ctx) {
       },
 
       extendWebpack (cfg) {
+        const flavor = process.env.NODE_APP_INSTANCE?.toLowerCase()
+        if (flavor !== 'prod') {
+          cfg.resolve.conditionNames = ['development', '...']
+        }
         cfg.resolve.fallback = {
           fs: false,
           'fs/promises': false,
