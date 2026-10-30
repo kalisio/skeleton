@@ -67,6 +67,7 @@ catalog:
   '@kalisio/common-geospatial': 1.0.1
   '@kalisio/common-graphics': 1.0.1
   '@kalisio/feathers-automerge': 0.4.0
+  '@kalisio/feathers-automerge-server': 0.4.0
   '@kalisio/feathers-distributed': 3.1.0
   '@kalisio/feathers-import-export': 3.1.0
   '@kalisio/feathers-tasks': 3.1.0

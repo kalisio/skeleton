@@ -46,20 +46,10 @@ module.exports = {
   */
   helmet: {
     contentSecurityPolicy: {
-      // Since helmet v4 default directives (eg script-src 'self') are added unless disabled,
-      // they would block WebAssembly (automerge), map tiles or API calls on other domains.
-      useDefaults: false,
       directives: {
-        defaultSrc: ['*', 'data:', 'blob:', "'unsafe-inline'", "'unsafe-eval'"],
-        frameAncestors: [
-          'http://localhost:*',
-          'https://*.kalisio.xyz',
-          'https://*.kalisio.com',
-          'https://*.kalisio.fr'
-        ]
+        scriptSrc: ["'self'", "'wasm-unsafe-eval'", "'unsafe-eval'"] // js / automerge / ajv
       }
-    },
-    frameguard: false
+    }
   },
   apiPath: API_PREFIX,
   paginate: {
