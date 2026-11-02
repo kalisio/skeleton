@@ -106,9 +106,6 @@ module.exports = configure(function (ctx) {
           stream: require.resolve('stream-browserify'),
           url: require.resolve('url')
         },
-        /*cfg.resolve.modules = [
-          path.resolve(__dirname, 'node_modules')
-        ],*/
         cfg.resolve.alias = {
           ...cfg.resolve.alias, // This adds the existing aliases
           '@components': [
