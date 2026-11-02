@@ -100,9 +100,7 @@ module.exports = configure(function (ctx) {
         cfg.resolve.fallback = {
           fs: false,
           'fs/promises': false,
-          sharp: false,
           path: require.resolve('path-browserify'),
-          crypto: require.resolve('crypto-browserify'),
           stream: require.resolve('stream-browserify'),
           url: require.resolve('url')
         },
